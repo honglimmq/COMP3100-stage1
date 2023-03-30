@@ -20,20 +20,23 @@ public class Client {
   private final int SERVERPORT = 50000;
 
   boolean debug = true;
+  int count = 0;
 
   Socket socket;
   DataOutputStream out;
   BufferedReader in;
   String incomingMsg = EMPTYSTRING;
+  String outgoingMsg = EMPTYSTRING;
+
 
   // job information
-  int jobID;
-  int reqCore;
-  int reqMemory;
-  int reqDisk;
+  int jobID = 0;
+  int reqCore = 0;
+  int reqMemory = 0;
+  int reqDisk = 0;
 
   // server information
-  
+
 
   public void run() throws IOException {
     // Connect
@@ -52,39 +55,68 @@ public class Client {
       sendMsg(Command.REDY);
       incomingMsg = recvMsg();
 
-      String[] tokens = incomingMsg.split("\\s+");
-      ServerCommand recvCommand = ServerCommand.valueOf(tokens[0]);
+      String[] splittedMsg = incomingMsg.split("\\s+");
+      ServerCommand recvCommand = ServerCommand.valueOf(splittedMsg[0]);
 
-      switch (recvCommand) {
-        case JOBN:
-          parseJobInfo(tokens);
-
-
-          break;
+      if (recvCommand.equals(ServerCommand.JOBN)) {
+        // handles JOBN case
       }
 
-      // Generate GETS command
-      String parametersForGETS =
-          "Capable" + WHITESPACE + reqCore + WHITESPACE + reqMemory + WHITESPACE + reqDisk;
-
-      sendMsg(Command.GETS, parametersForGETS);
-      incomingMsg = recvMsg();
-      tokens = incomingMsg.split("\\s++");
-      int numOfServer = Integer.parseInt(tokens[1]);
-
-      sendMsg(Command.OK);
-
-      
-
-
-
-
-
+      switch (recvCommand) {
+        case JOBP:
+        case JOBN:
+          handleJob(splittedMsg);
+          break;
+        case JCPL:
+        case NONE:
+        default:
+          break;
+      }
+      count++;
     }
-
-
+    sendMsg(Command.QUIT);
+    recvMsg();
 
     out.close();
+    socket.close();
+  }
+
+  void handleJob(String jobInfo[]) throws IOException{
+    parseJobInfo(jobInfo);
+    // Generate outgoing message for GETS command
+    outgoingMsg = "Capable" + WHITESPACE + reqCore + WHITESPACE + reqMemory + WHITESPACE + reqDisk;
+    sendMsg(Command.GETS, outgoingMsg);
+    incomingMsg = recvMsg();
+
+    String[] spiltedMsg = incomingMsg.split("\\s++");
+    // recv DATA jobID
+    int numOfServer = Integer.parseInt(spiltedMsg[1]);
+    int maxCore = -1;
+    int serverID = -1;
+    String serverType = EMPTYSTRING;
+
+
+    sendMsg(Command.OK);
+
+    for (int i = 0; i < numOfServer; i++) {
+      incomingMsg = recvMsg();
+      spiltedMsg = incomingMsg.split("\\s++");
+
+      int core = Integer.parseInt(spiltedMsg[4]);
+      if (maxCore < core) {
+        serverType = spiltedMsg[0];
+        serverID = Integer.parseInt(spiltedMsg[1]);
+        maxCore = core;
+      }
+    }
+
+    sendMsg(Command.OK);
+    incomingMsg = recvMsg();
+
+    // Schedule a job
+    outgoingMsg = jobID + WHITESPACE + serverType + WHITESPACE + serverID;
+    sendMsg(Command.SCHD, outgoingMsg);
+    incomingMsg = recvMsg();
   }
 
   String recvMsg() throws IOException {
@@ -104,7 +136,7 @@ public class Client {
 
   void sendMsg(Command cmd, String parameters) throws IOException {
     String message;
-    if(!parameters.isEmpty()){
+    if (!parameters.isEmpty()) {
       message = cmd + WHITESPACE + parameters + BREAKLINE;
     } else {
       message = cmd + BREAKLINE;
@@ -115,7 +147,7 @@ public class Client {
 
     // print client message
     if (debug) {
-      System.out.println("SENT " + message);
+      System.out.print("SENT " + message);
     }
   }
 
