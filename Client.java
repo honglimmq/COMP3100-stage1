@@ -6,9 +6,11 @@ enum Command {
   HELO, AUTH, REDY, OK, GETS, SCHD, ENQJ, DEQJ, LSTQ, CNTJ, EJWT, LSTJ, MIGJ, KILJ, TERM, QUIT
 }
 
+
 enum ServerCommand {
   DATA, JOBN, JOBP, JCPL, RESF, RESR, CHKQ, NONE, ERR, OK, QUIT
 }
+
 
 public class Client {
   private final String EMPTYSTRING = "";
@@ -16,7 +18,7 @@ public class Client {
   private final String WHITESPACE = " ";
   private final int SERVERPORT = 50000;
 
-  boolean debug = true;
+  boolean debug = false;
   int count = 0;
   boolean firstPass = true;
 
@@ -26,17 +28,15 @@ public class Client {
   String incomingMsg = EMPTYSTRING;
   String outgoingMsg = EMPTYSTRING;
 
-  // job information
+  // Current job information
   int jobID = 0;
   int reqCore = 0;
   int reqMemory = 0;
   int reqDisk = 0;
 
-  // server information
-  ArrayList<Server> servers = new ArrayList<Server>();
-  ArrayList<Server> availableServers = new ArrayList<Server>();
-  String serverType; 
-  int currServerID;  
+  // Selected server information
+  List<Server> servers = new ArrayList<Server>();
+  int currentServerIndex = 0;
 
   public void run() throws IOException {
     // Connect
@@ -47,7 +47,7 @@ public class Client {
     // TCP handshake
     sendMsg(Command.HELO);
     recvMsg();
-    sendMsg(Command.AUTH,  System.getProperty("user.name"));
+    sendMsg(Command.AUTH, System.getProperty("user.name"));
     recvMsg();
 
     while (!incomingMsg.equals(ServerCommand.NONE.toString())) {
@@ -91,38 +91,51 @@ public class Client {
 
       // Determine jobID to schedule a server for
       String[] spiltedMsg = incomingMsg.split("\\s++");
-      
+
       int numOfServer = Integer.parseInt(spiltedMsg[1]);
       int maxCore = -1;
-      int serverID = -1;
-
       sendMsg(Command.OK);
 
-      // Identifying the largest server type based on core 
-      // and count how many of that server type are there. 
+      // LRR strategy:
+      // Identifying the largest server type based on core
+      // and count how many of that server type are there.
       // State information on each server is formmated as:
       // [serverType] [serverID] [state] [currStartTime] [core] [memory] [disk]
       for (int i = 0; i < numOfServer; i++) {
         incomingMsg = recvMsg();
         spiltedMsg = incomingMsg.split("\\s++");
-
         int core = Integer.parseInt(spiltedMsg[4]);
-        if (maxCore < core) {
-          serverType = spiltedMsg[0];
-          serverID = Integer.parseInt(spiltedMsg[1]);
+
+        if (maxCore < core) { // case 1: A larger core server
+          servers.clear();
+          servers.add(parseServerInfo(spiltedMsg));
           maxCore = core;
+        } else if (maxCore == core) { // case 2: A similar large core server
+          servers.add(parseServerInfo(spiltedMsg));
+        } else { // case 3: smaller server
+          // do nothing
         }
       }
 
       sendMsg(Command.OK);
-      incomingMsg = recvMsg();
-
+      incomingMsg = recvMsg(); // RECV .
       firstPass = false;
     }
-    // Schedule a job
-    outgoingMsg = jobID + WHITESPACE + serverType + WHITESPACE + currServerID;
+
+
+    // Schedule a job based on LRR strategy
+    String serverType = servers.get(currentServerIndex).getServerType();
+    int serverID = servers.get(currentServerIndex).getServerID();
+
+    outgoingMsg = jobID + WHITESPACE + serverType + WHITESPACE + serverID;
     sendMsg(Command.SCHD, outgoingMsg);
     incomingMsg = recvMsg();
+
+    // Manage server choice based on LRR strategy
+    ++currentServerIndex;
+    if (currentServerIndex >= servers.size()) {
+      currentServerIndex = 0;
+    }
   }
 
   String recvMsg() throws IOException {
@@ -156,7 +169,7 @@ public class Client {
     }
   }
 
-  void parseJobInfo(String[] jobinfo) {
+  int parseJobInfo(String[] jobinfo) {
     try {
       jobID = Integer.parseInt(jobinfo[2]);
       reqCore = Integer.parseInt(jobinfo[4]);
@@ -168,12 +181,32 @@ public class Client {
       // TODO: handle exception
     }
 
+    return jobID;
   }
 
-  void parseServerInfo(String[] jobInfo) {
+  Server parseServerInfo(String[] jobInfo) {
+    Server server = null;
+    try {
+      String serverType = jobInfo[0];
+      int serverID = Integer.parseInt(jobInfo[1]);
+      String status = jobInfo[2];
+      int currStartTime = Integer.parseInt(jobInfo[3]);
+      int core = Integer.parseInt(jobInfo[4]);
+      int memory = Integer.parseInt(jobInfo[5]);
+      int disk = Integer.parseInt(jobInfo[6]);
+      int waitingJobs = Integer.parseInt(jobInfo[7]);
+      int runningJobs = Integer.parseInt(jobInfo[8]);
 
+      server = new Server(serverType, serverID, status, currStartTime, core, memory, disk,
+          waitingJobs, runningJobs);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
+    }
 
+    return server;
   }
+
+
 
   public static void main(String args[]) throws Exception {
     new Client().run();

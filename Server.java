@@ -1,6 +1,6 @@
 public class Server {
     private String serverType;
-    private String serverID;
+    private int serverID;
     private String status;
     private int currStartTime;
     private int core;
@@ -9,7 +9,7 @@ public class Server {
     private int waitingJobs;
     private int runningJobs;
 
-    public Server(String serverType, String serverID, String status, int currStartTime, int core,
+    public Server(String serverType, int serverID, String status, int currStartTime, int core,
             int memory, int disk, int waitingJobs, int runningJobs) {
         setServerType(serverType);
         setServerID(serverID);
@@ -26,7 +26,7 @@ public class Server {
         return serverType;
     }
 
-    public String getServerID() {
+    public int getServerID() {
         return serverID;
     }
 
@@ -62,7 +62,7 @@ public class Server {
         this.serverType = serverType;
     }
 
-    public void setServerID(String serverID) {
+    public void setServerID(int serverID) {
         this.serverID = serverID;
     }
 
