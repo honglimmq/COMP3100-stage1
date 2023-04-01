@@ -105,14 +105,18 @@ public class Client {
         incomingMsg = recvMsg();
         spiltedMsg = incomingMsg.split("\\s++");
         int core = Integer.parseInt(spiltedMsg[4]);
+        String serverType = spiltedMsg[0];
 
-        if (maxCore < core) { // case 1: A larger core server
+        if (maxCore < core) { 
+          // case 1: A larger number of core server
           servers.clear();
           servers.add(parseServerInfo(spiltedMsg));
           maxCore = core;
-        } else if (maxCore == core) { // case 2: A similar large core server
+        } else if (servers.get(0).getServerType().equals(serverType) && maxCore == core) {
+          // case 2: A same server type with same largest number of core
           servers.add(parseServerInfo(spiltedMsg));
-        } else { // case 3: smaller server
+        } else { 
+          // case 3: A different server type that may have lower or same number of core
           // do nothing
         }
       }
