@@ -1,5 +1,4 @@
 import java.net.*;
-import Client.Command;
 import java.io.*;
 import java.util.*;
 
@@ -34,6 +33,10 @@ public class Client {
   int reqDisk = 0;
 
   // server information
+  ArrayList<Server> servers = new ArrayList<Server>();
+  ArrayList<Server> availableServers = new ArrayList<Server>();
+  String serverType; 
+  int currServerID;  
 
   public void run() throws IOException {
     // Connect
@@ -44,7 +47,7 @@ public class Client {
     // TCP handshake
     sendMsg(Command.HELO);
     recvMsg();
-    sendMsg(Command.AUTH, "Ty");
+    sendMsg(Command.AUTH,  System.getProperty("user.name"));
     recvMsg();
 
     while (!incomingMsg.equals(ServerCommand.NONE.toString())) {
@@ -92,7 +95,6 @@ public class Client {
       int numOfServer = Integer.parseInt(spiltedMsg[1]);
       int maxCore = -1;
       int serverID = -1;
-      String serverType = EMPTYSTRING;
 
       sendMsg(Command.OK);
 
@@ -118,7 +120,7 @@ public class Client {
       firstPass = false;
     }
     // Schedule a job
-    outgoingMsg = jobID + WHITESPACE + serverType + WHITESPACE + serverID;
+    outgoingMsg = jobID + WHITESPACE + serverType + WHITESPACE + currServerID;
     sendMsg(Command.SCHD, outgoingMsg);
     incomingMsg = recvMsg();
   }
@@ -169,6 +171,7 @@ public class Client {
   }
 
   void parseServerInfo(String[] jobInfo) {
+
 
   }
 
