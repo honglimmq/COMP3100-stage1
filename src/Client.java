@@ -4,51 +4,25 @@
  * <p>
  * The 'Client' class is responsible for scheduling job requests to be sent to the distributed
  * server simulator. It simulates the behaviour of a client by generating request data and sending
- * it to the server using 'sendMsg' method. The current scheduler algorithm to pick which server to
- * dispatch job to is called Largest-Round-Robin(LRR), it sends each job to a server of the largest
- * type in a round-robin fashion.
+ * it to the server using 'serverCommunication.send' method. The current scheduler algorithm to pick
+ * which server to dispatch job to is called Largest-Round-Robin(LRR), it sends each job to a server
+ * of the largest type in a round-robin fashion.
  * 
  * <p>
  * Created by Hong Lim (Student ID: 44679440) on April 03, 2023.
  * </p>
  */
 
-import java.net.Socket;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
-
-enum Command {
-  HELO, AUTH, REDY, OK, GETS, SCHD, ENQJ, DEQJ, LSTQ, CNTJ, EJWT, LSTJ, MIGJ, KILJ, TERM, QUIT
-}
-
-
-enum ServerCommand {
-  DATA, JOBN, JOBP, JCPL, RESF, RESR, CHKQ, NONE, ERR, OK, QUIT
-}
-
+import util.Server;
+import util.ClientServerConnection;
+import util.Command;
+import util.ServerCommand;
 
 public class Client {
-  // Debug mode to enable print to console
-  private boolean debug = false;
-
-  // Constants
-  private final String EMPTYSTRING = "";
-  private final String BREAKLINE = "\n";
-  private final String WHITESPACE = " ";
-  private final int SERVERPORT = 50000;
-
-  // I/O and connections variables
-  private Socket socket;
-  private DataOutputStream out;
-  private BufferedReader in;
-  private String incomingMsg = EMPTYSTRING;
-  private String outgoingMsg = EMPTYSTRING;
-
-
   // Current job information
   private int jobID = 0;
   private int reqCore = 0;
@@ -59,34 +33,32 @@ public class Client {
   private List<Server> servers = new ArrayList<Server>();
   private int currentServerIndex = 0;
 
-  //
+  private ClientServerConnection serverCommunication;
   boolean firstPass = true;
+
+  public Client() {
+    serverCommunication = new ClientServerConnection();
+  }
 
   public void run() throws IOException {
     // Estabalish connection with ds-server
-    socket = new Socket("localhost", SERVERPORT);
-    out = new DataOutputStream(socket.getOutputStream());
-    in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+    serverCommunication.connect();
 
     // TCP handshake
-    sendMsg(Command.HELO);
-    recvMsg();
-    sendMsg(Command.AUTH, System.getProperty("user.name"));
-    recvMsg();
+    serverCommunication.send(Command.HELO);
+    serverCommunication.recieve();
+    serverCommunication.send(Command.AUTH, System.getProperty("user.name"));
+    serverCommunication.recieve();
 
-    while (!incomingMsg.equals(ServerCommand.NONE.toString())) {
+    while (!(serverCommunication.getReceivedMessage().equals(ServerCommand.NONE.toString()))) {
       // Signal server for a job
-      sendMsg(Command.REDY);
-      incomingMsg = recvMsg();
+      serverCommunication.send(Command.REDY);
+      serverCommunication.recieve();
 
-      String[] splittedMsg = incomingMsg.split("\\s+");
-      ServerCommand recvCommand = ServerCommand.valueOf(splittedMsg[0]);
+      String[] splittedMsg = serverCommunication.getReceivedMessage().split("\\s+");
+      ServerCommand receivedCommand = ServerCommand.valueOf(splittedMsg[0]);
 
-      if (recvCommand.equals(ServerCommand.JOBN)) {
-        // handles JOBN case
-      }
-
-      switch (recvCommand) {
+      switch (receivedCommand) {
         case JOBP:
         case JOBN:
           handleJob(splittedMsg);
@@ -97,36 +69,32 @@ public class Client {
           break;
       }
     }
-    sendMsg(Command.QUIT);
-    recvMsg();
-
-    out.close();
-    socket.close();
+    // Exit gracefully
+    System.exit(serverCommunication.close());
   }
+
 
   private void handleJob(String jobInfo[]) throws IOException {
     parseJobInfo(jobInfo);
 
     if (firstPass) {
       // Generate outgoing message for GETS All command
-      sendMsg(Command.GETS, "All");
-      incomingMsg = recvMsg();
+      serverCommunication.send(Command.GETS, "All");
+      serverCommunication.recieve();;
 
       // Determine jobID to schedule a server for
-      String[] spiltedMsg = incomingMsg.split("\\s++");
+      String[] spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
 
       int numOfServer = Integer.parseInt(spiltedMsg[1]);
       int maxCore = -1;
-      sendMsg(Command.OK);
+      serverCommunication.send(Command.OK);
 
       // LRR strategy:
       // Identifying the largest server type based on core
       // and count how many of that server type are there.
-      // State information on each server is formmated as:
-      // [serverType] [serverID] [state] [currStartTime] [core] [memory] [disk]
       for (int i = 0; i < numOfServer; i++) {
-        incomingMsg = recvMsg();
-        spiltedMsg = incomingMsg.split("\\s++");
+        serverCommunication.recieve();;
+        spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
         int core = Integer.parseInt(spiltedMsg[4]);
         String serverType = spiltedMsg[0];
 
@@ -144,55 +112,23 @@ public class Client {
         }
       }
 
-      sendMsg(Command.OK);
-      incomingMsg = recvMsg(); // RECV .
+      serverCommunication.send(Command.OK);
+      serverCommunication.recieve(); // RECV .
       firstPass = false;
     }
-
 
     // Schedule a job based on LRR strategy
     String serverType = servers.get(currentServerIndex).getServerType();
     int serverID = servers.get(currentServerIndex).getServerID();
 
-    outgoingMsg = jobID + WHITESPACE + serverType + WHITESPACE + serverID;
-    sendMsg(Command.SCHD, outgoingMsg);
-    incomingMsg = recvMsg();
+
+    serverCommunication.send(Command.SCHD, jobID + " " + serverType + " " + serverID);
+    serverCommunication.recieve();
 
     // Manage server choice based on LRR strategy
     ++currentServerIndex;
     if (currentServerIndex >= servers.size()) {
       currentServerIndex = 0;
-    }
-  }
-
-  private String recvMsg() throws IOException {
-    String message = in.readLine();
-
-    // print server message
-    if (debug) {
-      System.out.println("RCVD " + message);
-    }
-    return message;
-  }
-
-  private void sendMsg(Command cmd) throws IOException {
-    sendMsg(cmd, EMPTYSTRING);
-  }
-
-  private void sendMsg(Command cmd, String parameters) throws IOException {
-    String message;
-    if (!parameters.isEmpty()) {
-      message = cmd + WHITESPACE + parameters + BREAKLINE;
-    } else {
-      message = cmd + BREAKLINE;
-    }
-
-    out.write(message.getBytes());
-    out.flush();
-
-    // print client message
-    if (debug) {
-      System.out.print("SENT " + message);
     }
   }
 
@@ -205,7 +141,7 @@ public class Client {
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
     } catch (NumberFormatException e) {
-      // TODO: handle exception
+      System.out.println("NumberFormatException ==> " + e.getMessage());
     }
 
     return jobID;
@@ -228,12 +164,11 @@ public class Client {
           waitingJobs, runningJobs);
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
+    } catch (NumberFormatException e) {
+      System.out.println("NumberFormatException ==> " + e.getMessage());
     }
-
     return server;
   }
-
-
 
   public static void main(String args[]) throws Exception {
     new Client().run();

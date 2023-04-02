@@ -1,3 +1,5 @@
+package util;
+
 public class Server {
     private String serverType;
     private int serverID;
