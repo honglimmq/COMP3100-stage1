@@ -1,0 +1,11 @@
+# Java class files
+*.class
+
+# Test files
+S1Tests-wk6.sh
+S1testConfigs/
+
+# XML system files 
+*.xml
+
+
