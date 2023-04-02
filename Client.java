@@ -1,6 +1,25 @@
-import java.net.*;
-import java.io.*;
-import java.util.*;
+/**
+ * A client side simulator that acts as a scheduler for a server-side simulator called ds-server.
+ * 
+ * <p>
+ * The 'Client' class is responsible for scheduling job requests to be sent to the distributed
+ * server simulator. It simulates the behaviour of a client by generating request data and sending
+ * it to the server using 'sendMsg' method. The current scheduler algorithm to pick which server to
+ * dispatch job to is called Largest-Round-Robin(LRR), it sends each job to a server of the largest
+ * type in a round-robin fashion.
+ * 
+ * <p>
+ * Created by Hong Lim (Student ID: 44679440) on April 03, 2023.
+ * </p>
+ */
+
+import java.net.Socket;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 
 enum Command {
   HELO, AUTH, REDY, OK, GETS, SCHD, ENQJ, DEQJ, LSTQ, CNTJ, EJWT, LSTJ, MIGJ, KILJ, TERM, QUIT
@@ -13,33 +32,38 @@ enum ServerCommand {
 
 
 public class Client {
+  // Debug mode to enable print to console
+  private boolean debug = false;
+
+  // Constants
   private final String EMPTYSTRING = "";
   private final String BREAKLINE = "\n";
   private final String WHITESPACE = " ";
   private final int SERVERPORT = 50000;
 
-  boolean debug = false;
-  int count = 0;
-  boolean firstPass = true;
+  // I/O and connections variables
+  private Socket socket;
+  private DataOutputStream out;
+  private BufferedReader in;
+  private String incomingMsg = EMPTYSTRING;
+  private String outgoingMsg = EMPTYSTRING;
 
-  Socket socket;
-  DataOutputStream out;
-  BufferedReader in;
-  String incomingMsg = EMPTYSTRING;
-  String outgoingMsg = EMPTYSTRING;
 
   // Current job information
-  int jobID = 0;
-  int reqCore = 0;
-  int reqMemory = 0;
-  int reqDisk = 0;
+  private int jobID = 0;
+  private int reqCore = 0;
+  private int reqMemory = 0;
+  private int reqDisk = 0;
 
   // Selected server information
-  List<Server> servers = new ArrayList<Server>();
-  int currentServerIndex = 0;
+  private List<Server> servers = new ArrayList<Server>();
+  private int currentServerIndex = 0;
+
+  //
+  boolean firstPass = true;
 
   public void run() throws IOException {
-    // Connect
+    // Estabalish connection with ds-server
     socket = new Socket("localhost", SERVERPORT);
     out = new DataOutputStream(socket.getOutputStream());
     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -72,7 +96,6 @@ public class Client {
         default:
           break;
       }
-      count++;
     }
     sendMsg(Command.QUIT);
     recvMsg();
@@ -81,7 +104,7 @@ public class Client {
     socket.close();
   }
 
-  void handleJob(String jobInfo[]) throws IOException {
+  private void handleJob(String jobInfo[]) throws IOException {
     parseJobInfo(jobInfo);
 
     if (firstPass) {
@@ -107,7 +130,7 @@ public class Client {
         int core = Integer.parseInt(spiltedMsg[4]);
         String serverType = spiltedMsg[0];
 
-        if (maxCore < core) { 
+        if (maxCore < core) {
           // case 1: A larger number of core server
           servers.clear();
           servers.add(parseServerInfo(spiltedMsg));
@@ -115,7 +138,7 @@ public class Client {
         } else if (servers.get(0).getServerType().equals(serverType) && maxCore == core) {
           // case 2: A same server type with same largest number of core
           servers.add(parseServerInfo(spiltedMsg));
-        } else { 
+        } else {
           // case 3: A different server type that may have lower or same number of core
           // do nothing
         }
@@ -142,7 +165,7 @@ public class Client {
     }
   }
 
-  String recvMsg() throws IOException {
+  private String recvMsg() throws IOException {
     String message = in.readLine();
 
     // print server message
@@ -152,11 +175,11 @@ public class Client {
     return message;
   }
 
-  void sendMsg(Command cmd) throws IOException {
+  private void sendMsg(Command cmd) throws IOException {
     sendMsg(cmd, EMPTYSTRING);
   }
 
-  void sendMsg(Command cmd, String parameters) throws IOException {
+  private void sendMsg(Command cmd, String parameters) throws IOException {
     String message;
     if (!parameters.isEmpty()) {
       message = cmd + WHITESPACE + parameters + BREAKLINE;
@@ -173,7 +196,7 @@ public class Client {
     }
   }
 
-  int parseJobInfo(String[] jobinfo) {
+  private int parseJobInfo(String[] jobinfo) {
     try {
       jobID = Integer.parseInt(jobinfo[2]);
       reqCore = Integer.parseInt(jobinfo[4]);
@@ -188,7 +211,7 @@ public class Client {
     return jobID;
   }
 
-  Server parseServerInfo(String[] jobInfo) {
+  private Server parseServerInfo(String[] jobInfo) {
     Server server = null;
     try {
       String serverType = jobInfo[0];
