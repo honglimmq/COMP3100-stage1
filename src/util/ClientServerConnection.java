@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class ClientServerConnection {
-    private boolean debug = true;
+    private boolean debug = false;
     private final String EMPTY_STRING = "";
     private final String LINE_BREAK = "\n";
     private final String WHITESPACE = " ";
@@ -44,7 +44,6 @@ public class ClientServerConnection {
             socket = new Socket(serverAddress, serverPort);
             out = new DataOutputStream(socket.getOutputStream());
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            System.out.println("here");
         } catch (IOException e) {
             System.out.println("IOException ==> " + e.getMessage());
         }
