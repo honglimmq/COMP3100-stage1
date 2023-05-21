@@ -13,7 +13,6 @@
  * </p>
  */
 
-import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import util.*;
@@ -33,7 +32,7 @@ public class Client {
     serverCommunication = new ClientServerConnection();
   }
 
-  public void run() throws IOException {
+  public void run() {
     // Estabalish connection with ds-server
     serverCommunication.connect();
 
@@ -67,7 +66,7 @@ public class Client {
   }
 
 
-  private void handleJob(String jobInfo[]) throws IOException {
+  private void handleJob(String jobInfo[])  {
     parseJobInfo(jobInfo);
 
     if (firstPass) {
@@ -140,7 +139,7 @@ public class Client {
     return server;
   }
 
-  public static void main(String args[]) throws Exception {
+  public static void main(String args[]) {
     new Client().run();
   }
 }

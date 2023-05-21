@@ -49,11 +49,11 @@ public class ClientServerConnection {
         }
     }
 
-    public void send(Command cmd) throws IOException {
+    public void send(Command cmd) {
         send(cmd, EMPTY_STRING);
     }
 
-    public void send(Command cmd, String params) throws IOException {
+    public void send(Command cmd, String params) {
         String message;
         if (!params.isEmpty()) {
             message = cmd + WHITESPACE + params + LINE_BREAK;
@@ -61,16 +61,26 @@ public class ClientServerConnection {
             message = cmd + LINE_BREAK;
         }
 
-        out.write(message.getBytes());
-        out.flush();
+        try {
+            out.write(message.getBytes());
+            out.flush();
+        } catch (IOException e) {
+            System.err.println("An error occurred while sending the message to server: " + e.getMessage());
+            e.printStackTrace();
+        }
 
         if (debug) {
             System.out.print("SENT " + message);
         }
     }
 
-    public String recieve() throws IOException {
-        receivedMsg = in.readLine();
+    public String recieve()  {
+        try {
+            receivedMsg = in.readLine();
+        } catch (IOException e) {
+            System.err.println("An error occurred while recieving a message from server: " + e.getMessage());
+            e.printStackTrace();
+        }
 
         if (debug) {
             System.out.println("RECV " + receivedMsg);
@@ -78,16 +88,21 @@ public class ClientServerConnection {
         return this.receivedMsg;
     }
 
-    public int close() throws IOException {
+    public int close() {
         int exit = 0;
         this.send(Command.QUIT);
         if (!this.recieve().equals(ServerCommand.QUIT.toString())) {
             exit = 1;
         }
         // Close socket/IO Stream
-        out.close();
-        in.close();
-        socket.close();
+        try {
+            out.close();
+            in.close();
+            socket.close();
+        } catch (IOException e){
+            System.err.println("An error occurred while closing socket/IO streams: " + e.getMessage());
+            e.printStackTrace();
+        }
         return exit;
     }
 
