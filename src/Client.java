@@ -27,6 +27,8 @@ public class Client {
   private ClientServerConnection serverCommunication;
   private LRRStrategy scheduleStrategy;
   boolean firstPass = true;
+  Algorithm currAlgorithm = Algorithm.BF;
+
 
   public Client() {
     serverCommunication = new ClientServerConnection();
@@ -66,8 +68,17 @@ public class Client {
   }
 
 
-  private void handleJob(String jobInfo[])  {
-    parseJobInfo(jobInfo);
+  private void handleJob(String jobInfo[], ) {
+    int[] jobInforArray = parseJobInfo(jobInfo);
+
+
+    switch (currAlgorithm) {
+      case BF:
+        bestFitAlgorithm();
+        break;
+      default:
+
+    }
 
     if (firstPass) {
       // Generate outgoing message for GETS All command
@@ -102,7 +113,46 @@ public class Client {
     scheduleStrategy.nextServer();
   }
 
-  private int parseJobInfo(String[] jobInfo) {
+  // getMode = 0:Capable 1:Avail
+  private Server bestFitAlgorithm(int reqCore, int reqMemory, int reqDiskm) {
+    // Generate outgoing message for GETS Capable command
+    serverCommunication.send(Command.GETS, "Avail " + reqCore + " " + reqMemory + " " + reqDisk);
+
+    // DATA [nRecs] [recLen]
+    serverCommunication.recieve();
+    String[] spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
+    int numOfServer = Integer.parseInt(spiltedMsg[1]);
+    serverCommunication.send(Command.OK);
+
+    // Process first available server information
+    Server chosenServer;
+    if (numOfServer != 0) {
+      for (int i = 0; i < numOfServer; i++) {
+        serverCommunication.recieve();
+        if (i == 0) {
+          spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
+          chosenServer = parseServerInfo(spiltedMsg);
+        }
+
+      }
+    } else {
+      serverCommunication.send(Command.OK);
+      serverCommunication.recieve(); // RECV .
+      serverCommunication.send(Command.GETS,
+          "Capable " + reqCore + " " + reqMemory + " " + reqDisk);
+    }
+
+    serverCommunication.send(Command.OK);
+    serverCommunication.recieve(); // RECV .
+
+    if (numOfServer == 0) {
+      serverCommunication.send(Command.GETS,
+          "Capable " + reqCore + " " + reqMemory + " " + reqDisk);
+    }
+    return chosenServer;
+  }
+
+  private int[] parseJobInfo(String[] jobInfo) {
     try {
       jobID = Integer.parseInt(jobInfo[2]);
       reqCore = Integer.parseInt(jobInfo[4]);
@@ -113,7 +163,31 @@ public class Client {
     } catch (NumberFormatException e) {
       System.out.println("NumberFormatException ==> " + e.getMessage());
     }
+
     return jobID;
+  }
+
+  private List<Server> getServerInfo(GETSMode GetsMode, int reqCore, int reqMemory, int reqDisk) {
+    // Generate outgoing message for GETS command with appropriate GETSMode
+    String getModeStr = GetsMode.toString();
+    serverCommunication.send(Command.GETS, getModeStr + " " + reqCore + " " + reqMemory + " " + reqDisk);
+
+    // Should recieve DATA [nRecs] [recLen]
+    serverCommunication.recieve();
+    String[] spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
+    int numOfServer = Integer.parseInt(spiltedMsg[1]);
+    serverCommunication.send(Command.OK);
+
+    // Process servers information
+    List<Server> servers = new ArrayList<>();
+    for (int i = 0; i < numOfServer; i++) {
+      serverCommunication.recieve();
+      spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
+      servers.add(parseServerInfo(spiltedMsg));
+    }
+
+    serverCommunication.send(Command.OK);
+    serverCommunication.recieve(); // RECV .
   }
 
   private Server parseServerInfo(String[] serverInfo) {
