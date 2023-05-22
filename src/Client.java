@@ -25,10 +25,7 @@ public class Client {
   private int reqDisk = 0;
 
   private ClientServerConnection serverCommunication;
-  private LRRStrategy scheduleStrategy;
-  boolean firstPass = true;
   Algorithm currAlgorithm = Algorithm.BF;
-
 
   public Client() {
     serverCommunication = new ClientServerConnection();
@@ -68,52 +65,27 @@ public class Client {
   }
 
 
-  private void handleJob(String jobInfo[], ) {
-    int[] jobInforArray = parseJobInfo(jobInfo);
-
+  private void handleJob(String jobInfo[]) {
+    parseJobInfo(jobInfo);
+    Server chosenServer = null;
 
     switch (currAlgorithm) {
       case BF:
-        bestFitAlgorithm();
+        chosenServer = bestFitAlgorithm(reqCore, reqMemory, reqDisk);
         break;
       default:
-
     }
 
-    if (firstPass) {
-      // Generate outgoing message for GETS All command
-      serverCommunication.send(Command.GETS, "All");
+    // SCHD
+    if (chosenServer != null) {
+      String serverType = chosenServer.getServerType();
+      int serverID = chosenServer.getServerID();
 
-      // DATA [nRecs] [recLen]
+      serverCommunication.send(Command.SCHD, jobID + " " + serverType + " " + serverID);
       serverCommunication.recieve();
-      String[] spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
-      int numOfServer = Integer.parseInt(spiltedMsg[1]);
-      serverCommunication.send(Command.OK);
-
-      // Process all servers information
-      List<Server> servers = new ArrayList<>();
-      for (int i = 0; i < numOfServer; i++) {
-        serverCommunication.recieve();
-        spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
-        servers.add(parseServerInfo(spiltedMsg));
-      }
-      scheduleStrategy = new LRRStrategy(servers);
-      servers = null;
-
-      serverCommunication.send(Command.OK);
-      serverCommunication.recieve(); // RECV .
-      firstPass = false;
     }
-    // Schedule a job based on LRR strategy
-    String serverType = scheduleStrategy.getCurrentServer().getServerType();
-    int serverID = scheduleStrategy.getCurrentServer().getServerID();
-
-    serverCommunication.send(Command.SCHD, jobID + " " + serverType + " " + serverID);
-    serverCommunication.recieve();
-    scheduleStrategy.nextServer();
   }
 
-  
   private Server bestFitAlgorithm(int reqCore, int reqMem, int reqDisk) {
     // Query and return available server with required resource
     List<Server> servers = null;
@@ -153,18 +125,23 @@ public class Client {
     serverCommunication.recieve();
     String[] spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
     int numOfServer = Integer.parseInt(spiltedMsg[1]);
-    serverCommunication.send(Command.OK);
-
-    // Process servers information
     List<Server> servers = new ArrayList<>();
-    for (int i = 0; i < numOfServer; i++) {
-      serverCommunication.recieve();
-      spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
-      servers.add(parseServerInfo(spiltedMsg));
+
+    if (numOfServer != 0) {
+      serverCommunication.send(Command.OK);
+
+      // Process servers information
+      for (int i = 0; i < numOfServer; i++) {
+        serverCommunication.recieve();
+        spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
+        servers.add(parseServerInfo(spiltedMsg));
+      }
     }
 
     serverCommunication.send(Command.OK);
     serverCommunication.recieve(); // RECV .
+
+    return servers;
   }
 
   private Server parseServerInfo(String[] serverInfo) {
