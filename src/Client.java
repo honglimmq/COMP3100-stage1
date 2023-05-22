@@ -71,7 +71,7 @@ public class Client {
 
     switch (currAlgorithm) {
       case BF:
-        chosenServer = bestFitAlgorithm(reqCore, reqMemory, reqDisk);
+        chosenServer = bestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
         break;
       default:
     }
@@ -86,37 +86,43 @@ public class Client {
     }
   }
 
-  private Server bestFitAlgorithm(int reqCore, int reqMem, int reqDisk) {
+  private Server bestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
     List<Server> servers = null;
 
     // Query and return available server with required resource
-    servers = getServerInfo(GETSMode.Avail, reqCore, reqMem, reqDisk);
-    // Invarant: num of avail core of each server >= num of required core by current job.
+    servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
     if (servers != null && !servers.isEmpty()) {
       // Fitness value := num of available core of the server - num of required core by current job
-      // Due to the invarant, fitness value will always be >= 0
       int[] fitnessValue = new int[servers.size()];
-      int chosenServerIndex = 0;
-      int smallestFitnessValue = servers.get(0).getCore() - reqCore;
-      fitnessValue[0] = smallestFitnessValue;
+      int chosenServerIndex = -1;
+      int smallestFitnessValue = Integer.MAX_VALUE;
+  
 
-      // Find a server with the smallest fitness value. Given 2 servers of the same fitness value,
+      // Find a server with the smallest positive fitness value. If given 2 servers of the same fitness value,
       // pick the first one.
-      for (int i = 1; i < fitnessValue.length; i++) {
+      for (int i = 0; i < fitnessValue.length; i++) {
         fitnessValue[i] = servers.get(i).getCore() - reqCore;
-        if (fitnessValue[i - 1] > fitnessValue[i]) {
-          smallestFitnessValue = fitnessValue[i];
-          chosenServerIndex = i;
+        if (fitnessValue[i] < smallestFitnessValue && fitnessValue[i] >= 0) {
+            smallestFitnessValue = fitnessValue[i];
+            chosenServerIndex = i;
+        }
+      }
+
+      // Since, we cannot find a positive fitness value server, find a server with the closest fitness value to 0.
+      if(chosenServerIndex == -1){
+        for (int i = 0; i < fitnessValue.length; i++) {
+          fitnessValue[i] = servers.get(i).getCore() - reqCore;
+          if (fitnessValue[i] < smallestFitnessValue) {
+              smallestFitnessValue = fitnessValue[i];
+              chosenServerIndex = i;
+          }
         }
       }
       return servers.get(chosenServerIndex);
     }
 
-    // Query and return first capable server
-    servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
-
-    return servers.get(0);
+    return bestFitAlgorithm(reqCore, reqMem, reqDisk, GETSMode.Capable);
   }
 
 
