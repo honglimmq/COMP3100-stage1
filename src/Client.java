@@ -113,46 +113,22 @@ public class Client {
     scheduleStrategy.nextServer();
   }
 
-  // getMode = 0:Capable 1:Avail
-  private Server bestFitAlgorithm(int reqCore, int reqMemory, int reqDiskm) {
-    // Generate outgoing message for GETS Capable command
-    serverCommunication.send(Command.GETS, "Avail " + reqCore + " " + reqMemory + " " + reqDisk);
-
-    // DATA [nRecs] [recLen]
-    serverCommunication.recieve();
-    String[] spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
-    int numOfServer = Integer.parseInt(spiltedMsg[1]);
-    serverCommunication.send(Command.OK);
-
-    // Process first available server information
-    Server chosenServer;
-    if (numOfServer != 0) {
-      for (int i = 0; i < numOfServer; i++) {
-        serverCommunication.recieve();
-        if (i == 0) {
-          spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
-          chosenServer = parseServerInfo(spiltedMsg);
-        }
-
-      }
-    } else {
-      serverCommunication.send(Command.OK);
-      serverCommunication.recieve(); // RECV .
-      serverCommunication.send(Command.GETS,
-          "Capable " + reqCore + " " + reqMemory + " " + reqDisk);
+  
+  private Server bestFitAlgorithm(int reqCore, int reqMem, int reqDisk) {
+    // Query and return available server with required resource
+    List<Server> servers = null;
+    servers = getServerInfo(GETSMode.Avail, reqCore, reqMem, reqDisk);
+    if (servers != null && !servers.isEmpty()) {
+      return servers.get(0);
     }
 
-    serverCommunication.send(Command.OK);
-    serverCommunication.recieve(); // RECV .
-
-    if (numOfServer == 0) {
-      serverCommunication.send(Command.GETS,
-          "Capable " + reqCore + " " + reqMemory + " " + reqDisk);
-    }
-    return chosenServer;
+    // Query and return first capable server
+    servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
+    return servers.get(0);
   }
 
-  private int[] parseJobInfo(String[] jobInfo) {
+
+  private int parseJobInfo(String[] jobInfo) {
     try {
       jobID = Integer.parseInt(jobInfo[2]);
       reqCore = Integer.parseInt(jobInfo[4]);
@@ -170,7 +146,8 @@ public class Client {
   private List<Server> getServerInfo(GETSMode GetsMode, int reqCore, int reqMemory, int reqDisk) {
     // Generate outgoing message for GETS command with appropriate GETSMode
     String getModeStr = GetsMode.toString();
-    serverCommunication.send(Command.GETS, getModeStr + " " + reqCore + " " + reqMemory + " " + reqDisk);
+    serverCommunication.send(Command.GETS,
+        getModeStr + " " + reqCore + " " + reqMemory + " " + reqDisk);
 
     // Should recieve DATA [nRecs] [recLen]
     serverCommunication.recieve();
