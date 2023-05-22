@@ -1,98 +1,119 @@
 package util;
 
 public class Server {
-    private String serverType;
-    private int serverID;
-    private String status;
-    private int currStartTime;
-    private int core;
-    private int memory;
-    private int disk;
-    private int waitingJobs;
-    private int runningJobs;
+    public enum ServerState{
+        INACTIVE,  BOOTING, IDLE, ACTIVE, UNAVAILABLE
+    }
 
-    public Server(String serverType, int serverID, String status, int currStartTime, int core,
-            int memory, int disk, int waitingJobs, int runningJobs) {
-        setServerType(serverType);
-        setServerID(serverID);
-        setStatus(status);
-        setCurrStartTime(currStartTime);
-        setCore(core);
-        setMemory(memory);
-        setDisk(disk);
-        setWaitingJobs(waitingJobs);
-        setRunningJobs(runningJobs);
+    final String serverType;
+    final int serverID;
+    private ServerState state;
+    private int currStartTime;
+    final int core;
+    final int memory;
+    final int disk;
+    private int coreLeft;
+    private int memoryLeft;
+    private int diskLeft;
+    private int hourlyRentalRate;
+
+    public Server(String serverType, int serverID, ServerState state, int currStartTime, int core,
+            int memory, int disk) {
+                this.serverType = serverType;
+                this.serverID = serverID;
+                this.state = state;
+                this.currStartTime = currStartTime;
+                this.core = core;
+                this.memory = memory;
+                this.disk = disk;
+                this.setCoreLeft(core);
+                this.setMemoryLeft(memory);
+                this.setDiskLeft(disk);
+                this.hourlyRentalRate = -1;
     }
 
     public String getServerType() {
         return serverType;
     }
 
+
     public int getServerID() {
         return serverID;
     }
 
-    public String getStatus() {
-        return status;
+
+    public ServerState getState() {
+        return state;
     }
+
 
     public int getCurrStartTime() {
         return currStartTime;
     }
 
-    public int getCore() {
-        return core;
-    }
-
-    public int getMemory() {
-        return memory;
-    }
-
-    public int getDisk() {
-        return disk;
-    }
-
-    public int getWaitingJobs() {
-        return waitingJobs;
-    }
-
-    public int getRunningJobs() {
-        return runningJobs;
-    }
-
-    public void setServerType(String serverType) {
-        this.serverType = serverType;
-    }
-
-    public void setServerID(int serverID) {
-        this.serverID = serverID;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public void setCurrStartTime(int currStartTime) {
         this.currStartTime = currStartTime;
     }
 
-    public void setCore(int core) {
-        this.core = core;
+
+    public int getCore() {
+        return core;
     }
 
-    public void setMemory(int memory) {
-        this.memory = memory;
+
+    public int getMemory() {
+        return memory;
     }
 
-    public void setDisk(int disk) {
-        this.disk = disk;
+
+    public int getDisk() {
+        return disk;
     }
 
-    public void setWaitingJobs(int waitingJobs) {
-        this.waitingJobs = waitingJobs;
+
+    public int getCoreLeft() {
+        return coreLeft;
     }
 
-    public void setRunningJobs(int runningJobs) {
-        this.runningJobs = runningJobs;
+
+    public void setCoreLeft(int coreLeft) {
+        this.coreLeft = coreLeft;
+    }
+
+
+    public int getMemoryLeft() {
+        return memoryLeft;
+    }
+
+
+    public void setMemoryLeft(int memoryLeft) {
+        this.memoryLeft = memoryLeft;
+    }
+
+
+    public int getDiskLeft() {
+        return diskLeft;
+    }
+
+
+    public void setDiskLeft(int diskLeft) {
+        this.diskLeft = diskLeft;
+    }
+
+    public int getCoreAvailable(){
+        return core - coreLeft;
+    }
+
+    public int getMemoryAvailable(){
+        return memory - memoryLeft;
+    }
+
+    public int getDiskAvailable(){
+        return disk - diskLeft;
+    }
+
+    public int getHourlyRentalRate(){
+        return this.hourlyRentalRate;
     }
 }

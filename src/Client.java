@@ -169,7 +169,7 @@ public class Client {
     try {
       String serverType = serverInfo[0];
       int serverID = Integer.parseInt(serverInfo[1]);
-      String status = serverInfo[2];
+      String state = serverInfo[2];
       int currStartTime = Integer.parseInt(serverInfo[3]);
       int core = Integer.parseInt(serverInfo[4]);
       int memory = Integer.parseInt(serverInfo[5]);
@@ -177,7 +177,7 @@ public class Client {
       int waitingJobs = Integer.parseInt(serverInfo[7]);
       int runningJobs = Integer.parseInt(serverInfo[8]);
 
-      server = new Server(serverType, serverID, status, currStartTime, core, memory, disk,
+      server = new Server(serverType, serverID, Server.ServerState.ACTIVE, currStartTime, core, memory, disk,
           waitingJobs, runningJobs);
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
