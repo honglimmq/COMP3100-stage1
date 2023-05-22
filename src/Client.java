@@ -87,38 +87,36 @@ public class Client {
   }
 
   private Server bestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
-    List<Server> servers = null;
-
     // Query and return available server with required resource
-    servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
+    List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
     if (servers != null && !servers.isEmpty()) {
       // Fitness value := num of available core of the server - num of required core by current job
-      int[] fitnessValue = new int[servers.size()];
       int chosenServerIndex = -1;
       int smallestFitnessValue = Integer.MAX_VALUE;
-  
 
-      // Find a server with the smallest positive fitness value. If given 2 servers of the same fitness value,
-      // pick the first one.
-      for (int i = 0; i < fitnessValue.length; i++) {
-        fitnessValue[i] = servers.get(i).getCore() - reqCore;
-        if (fitnessValue[i] < smallestFitnessValue && fitnessValue[i] >= 0) {
-            smallestFitnessValue = fitnessValue[i];
-            chosenServerIndex = i;
+      int backupServerIndex = -1;
+      
+
+
+      // Find a server with the smallest positive fitness value. If given 2 servers of the same
+      // fitness value, pick the first one. If however, there is no positive fitness value server,
+      // pick the closest negative fitness value server to 0.
+      for (int i = 0; i < servers.size(); i++) {
+        int fitnessValue = servers.get(i).getCore() - reqCore;
+        if (fitnessValue < smallestFitnessValue && fitnessValue >= 0) {
+          smallestFitnessValue = fitnessValue;
+          chosenServerIndex = i;
+        } else if (chosenServerIndex == -1 && fitnessValue < smallestFitnessValue) {
+          smallestFitnessValue = fitnessValue;
+          backupServerIndex = i;
         }
       }
 
-      // Since, we cannot find a positive fitness value server, find a server with the closest fitness value to 0.
       if(chosenServerIndex == -1){
-        for (int i = 0; i < fitnessValue.length; i++) {
-          fitnessValue[i] = servers.get(i).getCore() - reqCore;
-          if (fitnessValue[i] < smallestFitnessValue) {
-              smallestFitnessValue = fitnessValue[i];
-              chosenServerIndex = i;
-          }
-        }
+        chosenServerIndex = backupServerIndex;
       }
+
       return servers.get(chosenServerIndex);
     }
 
