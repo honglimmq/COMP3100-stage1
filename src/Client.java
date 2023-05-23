@@ -87,17 +87,14 @@ public class Client {
   }
 
   private Server bestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
-    // Query and return available server with required resource
+    // Query and return available server with required resource based on GETS mode
     List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
     if (servers != null && !servers.isEmpty()) {
       // Fitness value := num of available core of the server - num of required core by current job
       int chosenServerIndex = -1;
-      int smallestFitnessValue = Integer.MAX_VALUE;
-
       int backupServerIndex = -1;
-      
-
+      int smallestFitnessValue = Integer.MAX_VALUE;
 
       // Find a server with the smallest positive fitness value. If given 2 servers of the same
       // fitness value, pick the first one. If however, there is no positive fitness value server,
@@ -181,7 +178,7 @@ public class Client {
       int waitingJobs = Integer.parseInt(serverInfo[7]);
       int runningJobs = Integer.parseInt(serverInfo[8]);
 
-      server = new Server(serverType, serverID, Server.ServerState.ACTIVE, currStartTime, core, memory, disk,
+      server = new Server(serverType, serverID, state, currStartTime, core, memory, disk,
           waitingJobs, runningJobs);
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
