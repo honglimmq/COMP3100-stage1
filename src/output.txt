@@ -1,0 +1,1678 @@
+# ds-sim server 28-Feb, 2023 @ MQ - client-server
+# Server-side simulator started with './ds-server -n -v all'
+# Waiting for connection to port 50000 of IP address 127.0.0.1
+RCVD HELO
+SENT OK
+RCVD AUTH moon
+# Welcome  moon!
+# The system information can be read from 'ds-system.xml'
+SENT OK
+RCVD REDY
+SENT JOBN 13 0 1 2 300 500
+RCVD GETS Avail 2 300 500
+SENT DATA 177 124
+RCVD OK
+SENT small 0 inactive -1 2 6000 16000 0 0
+small 1 inactive -1 2 6000 16000 0 0
+small 2 inactive -1 2 6000 16000 0 0
+small 3 inactive -1 2 6000 16000 0 0
+small 4 inactive -1 2 6000 16000 0 0
+small 5 inactive -1 2 6000 16000 0 0
+small 6 inactive -1 2 6000 16000 0 0
+small 7 inactive -1 2 6000 16000 0 0
+small 8 inactive -1 2 6000 16000 0 0
+small 9 inactive -1 2 6000 16000 0 0
+small 10 inactive -1 2 6000 16000 0 0
+small 11 inactive -1 2 6000 16000 0 0
+small 12 inactive -1 2 6000 16000 0 0
+small 13 inactive -1 2 6000 16000 0 0
+small 14 inactive -1 2 6000 16000 0 0
+small 15 inactive -1 2 6000 16000 0 0
+small 16 inactive -1 2 6000 16000 0 0
+small 17 inactive -1 2 6000 16000 0 0
+small 18 inactive -1 2 6000 16000 0 0
+small 19 inactive -1 2 6000 16000 0 0
+small 20 inactive -1 2 6000 16000 0 0
+small 21 inactive -1 2 6000 16000 0 0
+small 22 inactive -1 2 6000 16000 0 0
+small 23 inactive -1 2 6000 16000 0 0
+small 24 inactive -1 2 6000 16000 0 0
+small 25 inactive -1 2 6000 16000 0 0
+small 26 inactive -1 2 6000 16000 0 0
+small 27 inactive -1 2 6000 16000 0 0
+small 28 inactive -1 2 6000 16000 0 0
+small 29 inactive -1 2 6000 16000 0 0
+medium 0 inactive -1 4 20000 64000 0 0
+medium 1 inactive -1 4 20000 64000 0 0
+medium 2 inactive -1 4 20000 64000 0 0
+medium 3 inactive -1 4 20000 64000 0 0
+medium 4 inactive -1 4 20000 64000 0 0
+medium 5 inactive -1 4 20000 64000 0 0
+medium 6 inactive -1 4 20000 64000 0 0
+medium 7 inactive -1 4 20000 64000 0 0
+medium 8 inactive -1 4 20000 64000 0 0
+medium 9 inactive -1 4 20000 64000 0 0
+medium 10 inactive -1 4 20000 64000 0 0
+medium 11 inactive -1 4 20000 64000 0 0
+medium 12 inactive -1 4 20000 64000 0 0
+medium 13 inactive -1 4 20000 64000 0 0
+medium 14 inactive -1 4 20000 64000 0 0
+medium 15 inactive -1 4 20000 64000 0 0
+medium 16 inactive -1 4 20000 64000 0 0
+medium 17 inactive -1 4 20000 64000 0 0
+medium 18 inactive -1 4 20000 64000 0 0
+medium 19 inactive -1 4 20000 64000 0 0
+medium 20 inactive -1 4 20000 64000 0 0
+medium 21 inactive -1 4 20000 64000 0 0
+medium 22 inactive -1 4 20000 64000 0 0
+medium 23 inactive -1 4 20000 64000 0 0
+medium 24 inactive -1 4 20000 64000 0 0
+medium 25 inactive -1 4 20000 64000 0 0
+medium 26 inactive -1 4 20000 64000 0 0
+medium 27 inactive -1 4 20000 64000 0 0
+medium 28 inactive -1 4 20000 64000 0 0
+medium 29 inactive -1 4 20000 64000 0 0
+large 0 inactive -1 8 200000 256000 0 0
+large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 0 inactive -1 16 448000 512000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 0 small 0
+t:         13 job     0 (waiting) on # 0 of server small (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 45 1 10 6 6100 11300
+RCVD GETS Avail 6 6100 11300
+SENT DATA 117 124
+RCVD OK
+SENT large 0 inactive -1 8 200000 256000 0 0
+large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 0 inactive -1 16 448000 512000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 1 large 0
+t:         45 job     1 (waiting) on # 0 of server large (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 51 2 151153 1 100 1000
+RCVD GETS Avail 1 100 1000
+SENT DATA 182 124
+RCVD OK
+SENT tiny 0 inactive -1 1 1000 4000 0 0
+tiny 1 inactive -1 1 1000 4000 0 0
+tiny 2 inactive -1 1 1000 4000 0 0
+tiny 3 inactive -1 1 1000 4000 0 0
+tiny 4 inactive -1 1 1000 4000 0 0
+tiny 5 inactive -1 1 1000 4000 0 0
+tiny 6 inactive -1 1 1000 4000 0 0
+small 1 inactive -1 2 6000 16000 0 0
+small 2 inactive -1 2 6000 16000 0 0
+small 3 inactive -1 2 6000 16000 0 0
+small 4 inactive -1 2 6000 16000 0 0
+small 5 inactive -1 2 6000 16000 0 0
+small 6 inactive -1 2 6000 16000 0 0
+small 7 inactive -1 2 6000 16000 0 0
+small 8 inactive -1 2 6000 16000 0 0
+small 9 inactive -1 2 6000 16000 0 0
+small 10 inactive -1 2 6000 16000 0 0
+small 11 inactive -1 2 6000 16000 0 0
+small 12 inactive -1 2 6000 16000 0 0
+small 13 inactive -1 2 6000 16000 0 0
+small 14 inactive -1 2 6000 16000 0 0
+small 15 inactive -1 2 6000 16000 0 0
+small 16 inactive -1 2 6000 16000 0 0
+small 17 inactive -1 2 6000 16000 0 0
+small 18 inactive -1 2 6000 16000 0 0
+small 19 inactive -1 2 6000 16000 0 0
+small 20 inactive -1 2 6000 16000 0 0
+small 21 inactive -1 2 6000 16000 0 0
+small 22 inactive -1 2 6000 16000 0 0
+small 23 inactive -1 2 6000 16000 0 0
+small 24 inactive -1 2 6000 16000 0 0
+small 25 inactive -1 2 6000 16000 0 0
+small 26 inactive -1 2 6000 16000 0 0
+small 27 inactive -1 2 6000 16000 0 0
+small 28 inactive -1 2 6000 16000 0 0
+small 29 inactive -1 2 6000 16000 0 0
+medium 0 inactive -1 4 20000 64000 0 0
+medium 1 inactive -1 4 20000 64000 0 0
+medium 2 inactive -1 4 20000 64000 0 0
+medium 3 inactive -1 4 20000 64000 0 0
+medium 4 inactive -1 4 20000 64000 0 0
+medium 5 inactive -1 4 20000 64000 0 0
+medium 6 inactive -1 4 20000 64000 0 0
+medium 7 inactive -1 4 20000 64000 0 0
+medium 8 inactive -1 4 20000 64000 0 0
+medium 9 inactive -1 4 20000 64000 0 0
+medium 10 inactive -1 4 20000 64000 0 0
+medium 11 inactive -1 4 20000 64000 0 0
+medium 12 inactive -1 4 20000 64000 0 0
+medium 13 inactive -1 4 20000 64000 0 0
+medium 14 inactive -1 4 20000 64000 0 0
+medium 15 inactive -1 4 20000 64000 0 0
+medium 16 inactive -1 4 20000 64000 0 0
+medium 17 inactive -1 4 20000 64000 0 0
+medium 18 inactive -1 4 20000 64000 0 0
+medium 19 inactive -1 4 20000 64000 0 0
+medium 20 inactive -1 4 20000 64000 0 0
+medium 21 inactive -1 4 20000 64000 0 0
+medium 22 inactive -1 4 20000 64000 0 0
+medium 23 inactive -1 4 20000 64000 0 0
+medium 24 inactive -1 4 20000 64000 0 0
+medium 25 inactive -1 4 20000 64000 0 0
+medium 26 inactive -1 4 20000 64000 0 0
+medium 27 inactive -1 4 20000 64000 0 0
+medium 28 inactive -1 4 20000 64000 0 0
+medium 29 inactive -1 4 20000 64000 0 0
+large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 0 inactive -1 16 448000 512000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 2 tiny 0
+t:         51 job     2 (waiting) on # 0 of server tiny (booting) SCHEDULED
+SENT OK
+RCVD REDY
+t:         73 job     0 on # 0 of server small RUNNING
+SENT JOBN 93 3 236 10 10200 11800
+RCVD GETS Avail 10 10200 11800
+SENT DATA 87 124
+RCVD OK
+SENT xlarge 0 inactive -1 16 448000 512000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 3 xlarge 0
+t:         93 job     3 (waiting) on # 0 of server xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+t:        105 job     1 on # 0 of server large RUNNING
+t:        111 job     2 on # 0 of server tiny RUNNING
+t:        111 job     1 on # 0 of server large COMPLETED
+SENT JCPL 111 1 large 0
+RCVD REDY
+SENT JOBN 115 4 100 1 200 1900
+RCVD GETS Avail 1 200 1900
+SENT DATA 181 124
+RCVD OK
+SENT tiny 1 inactive -1 1 1000 4000 0 0
+tiny 2 inactive -1 1 1000 4000 0 0
+tiny 3 inactive -1 1 1000 4000 0 0
+tiny 4 inactive -1 1 1000 4000 0 0
+tiny 5 inactive -1 1 1000 4000 0 0
+tiny 6 inactive -1 1 1000 4000 0 0
+small 1 inactive -1 2 6000 16000 0 0
+small 2 inactive -1 2 6000 16000 0 0
+small 3 inactive -1 2 6000 16000 0 0
+small 4 inactive -1 2 6000 16000 0 0
+small 5 inactive -1 2 6000 16000 0 0
+small 6 inactive -1 2 6000 16000 0 0
+small 7 inactive -1 2 6000 16000 0 0
+small 8 inactive -1 2 6000 16000 0 0
+small 9 inactive -1 2 6000 16000 0 0
+small 10 inactive -1 2 6000 16000 0 0
+small 11 inactive -1 2 6000 16000 0 0
+small 12 inactive -1 2 6000 16000 0 0
+small 13 inactive -1 2 6000 16000 0 0
+small 14 inactive -1 2 6000 16000 0 0
+small 15 inactive -1 2 6000 16000 0 0
+small 16 inactive -1 2 6000 16000 0 0
+small 17 inactive -1 2 6000 16000 0 0
+small 18 inactive -1 2 6000 16000 0 0
+small 19 inactive -1 2 6000 16000 0 0
+small 20 inactive -1 2 6000 16000 0 0
+small 21 inactive -1 2 6000 16000 0 0
+small 22 inactive -1 2 6000 16000 0 0
+small 23 inactive -1 2 6000 16000 0 0
+small 24 inactive -1 2 6000 16000 0 0
+small 25 inactive -1 2 6000 16000 0 0
+small 26 inactive -1 2 6000 16000 0 0
+small 27 inactive -1 2 6000 16000 0 0
+small 28 inactive -1 2 6000 16000 0 0
+small 29 inactive -1 2 6000 16000 0 0
+medium 0 inactive -1 4 20000 64000 0 0
+medium 1 inactive -1 4 20000 64000 0 0
+medium 2 inactive -1 4 20000 64000 0 0
+medium 3 inactive -1 4 20000 64000 0 0
+medium 4 inactive -1 4 20000 64000 0 0
+medium 5 inactive -1 4 20000 64000 0 0
+medium 6 inactive -1 4 20000 64000 0 0
+medium 7 inactive -1 4 20000 64000 0 0
+medium 8 inactive -1 4 20000 64000 0 0
+medium 9 inactive -1 4 20000 64000 0 0
+medium 10 inactive -1 4 20000 64000 0 0
+medium 11 inactive -1 4 20000 64000 0 0
+medium 12 inactive -1 4 20000 64000 0 0
+medium 13 inactive -1 4 20000 64000 0 0
+medium 14 inactive -1 4 20000 64000 0 0
+medium 15 inactive -1 4 20000 64000 0 0
+medium 16 inactive -1 4 20000 64000 0 0
+medium 17 inactive -1 4 20000 64000 0 0
+medium 18 inactive -1 4 20000 64000 0 0
+medium 19 inactive -1 4 20000 64000 0 0
+medium 20 inactive -1 4 20000 64000 0 0
+medium 21 inactive -1 4 20000 64000 0 0
+medium 22 inactive -1 4 20000 64000 0 0
+medium 23 inactive -1 4 20000 64000 0 0
+medium 24 inactive -1 4 20000 64000 0 0
+medium 25 inactive -1 4 20000 64000 0 0
+medium 26 inactive -1 4 20000 64000 0 0
+medium 27 inactive -1 4 20000 64000 0 0
+medium 28 inactive -1 4 20000 64000 0 0
+medium 29 inactive -1 4 20000 64000 0 0
+large 0 idle 105 8 200000 256000 0 0
+large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 4 tiny 1
+t:        115 job     4 (waiting) on # 1 of server tiny (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 118 5 23 8 6800 9400
+RCVD GETS Avail 8 6800 9400
+SENT DATA 116 124
+RCVD OK
+SENT large 0 idle 105 8 200000 256000 0 0
+large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 5 large 0
+t:        118 job     5 (running) on # 0 of server large (active) SCHEDULED
+t:        118 job     5 on # 0 of server large RUNNING
+SENT OK
+RCVD REDY
+SENT JOBN 130 6 162 1 800 400
+RCVD GETS Avail 1 800 400
+SENT DATA 179 124
+RCVD OK
+SENT tiny 2 inactive -1 1 1000 4000 0 0
+tiny 3 inactive -1 1 1000 4000 0 0
+tiny 4 inactive -1 1 1000 4000 0 0
+tiny 5 inactive -1 1 1000 4000 0 0
+tiny 6 inactive -1 1 1000 4000 0 0
+small 1 inactive -1 2 6000 16000 0 0
+small 2 inactive -1 2 6000 16000 0 0
+small 3 inactive -1 2 6000 16000 0 0
+small 4 inactive -1 2 6000 16000 0 0
+small 5 inactive -1 2 6000 16000 0 0
+small 6 inactive -1 2 6000 16000 0 0
+small 7 inactive -1 2 6000 16000 0 0
+small 8 inactive -1 2 6000 16000 0 0
+small 9 inactive -1 2 6000 16000 0 0
+small 10 inactive -1 2 6000 16000 0 0
+small 11 inactive -1 2 6000 16000 0 0
+small 12 inactive -1 2 6000 16000 0 0
+small 13 inactive -1 2 6000 16000 0 0
+small 14 inactive -1 2 6000 16000 0 0
+small 15 inactive -1 2 6000 16000 0 0
+small 16 inactive -1 2 6000 16000 0 0
+small 17 inactive -1 2 6000 16000 0 0
+small 18 inactive -1 2 6000 16000 0 0
+small 19 inactive -1 2 6000 16000 0 0
+small 20 inactive -1 2 6000 16000 0 0
+small 21 inactive -1 2 6000 16000 0 0
+small 22 inactive -1 2 6000 16000 0 0
+small 23 inactive -1 2 6000 16000 0 0
+small 24 inactive -1 2 6000 16000 0 0
+small 25 inactive -1 2 6000 16000 0 0
+small 26 inactive -1 2 6000 16000 0 0
+small 27 inactive -1 2 6000 16000 0 0
+small 28 inactive -1 2 6000 16000 0 0
+small 29 inactive -1 2 6000 16000 0 0
+medium 0 inactive -1 4 20000 64000 0 0
+medium 1 inactive -1 4 20000 64000 0 0
+medium 2 inactive -1 4 20000 64000 0 0
+medium 3 inactive -1 4 20000 64000 0 0
+medium 4 inactive -1 4 20000 64000 0 0
+medium 5 inactive -1 4 20000 64000 0 0
+medium 6 inactive -1 4 20000 64000 0 0
+medium 7 inactive -1 4 20000 64000 0 0
+medium 8 inactive -1 4 20000 64000 0 0
+medium 9 inactive -1 4 20000 64000 0 0
+medium 10 inactive -1 4 20000 64000 0 0
+medium 11 inactive -1 4 20000 64000 0 0
+medium 12 inactive -1 4 20000 64000 0 0
+medium 13 inactive -1 4 20000 64000 0 0
+medium 14 inactive -1 4 20000 64000 0 0
+medium 15 inactive -1 4 20000 64000 0 0
+medium 16 inactive -1 4 20000 64000 0 0
+medium 17 inactive -1 4 20000 64000 0 0
+medium 18 inactive -1 4 20000 64000 0 0
+medium 19 inactive -1 4 20000 64000 0 0
+medium 20 inactive -1 4 20000 64000 0 0
+medium 21 inactive -1 4 20000 64000 0 0
+medium 22 inactive -1 4 20000 64000 0 0
+medium 23 inactive -1 4 20000 64000 0 0
+medium 24 inactive -1 4 20000 64000 0 0
+medium 25 inactive -1 4 20000 64000 0 0
+medium 26 inactive -1 4 20000 64000 0 0
+medium 27 inactive -1 4 20000 64000 0 0
+medium 28 inactive -1 4 20000 64000 0 0
+medium 29 inactive -1 4 20000 64000 0 0
+large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 6 tiny 2
+t:        130 job     6 (waiting) on # 2 of server tiny (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 144 7 400 1 600 100
+RCVD GETS Avail 1 600 100
+SENT DATA 178 124
+RCVD OK
+SENT tiny 3 inactive -1 1 1000 4000 0 0
+tiny 4 inactive -1 1 1000 4000 0 0
+tiny 5 inactive -1 1 1000 4000 0 0
+tiny 6 inactive -1 1 1000 4000 0 0
+small 1 inactive -1 2 6000 16000 0 0
+small 2 inactive -1 2 6000 16000 0 0
+small 3 inactive -1 2 6000 16000 0 0
+small 4 inactive -1 2 6000 16000 0 0
+small 5 inactive -1 2 6000 16000 0 0
+small 6 inactive -1 2 6000 16000 0 0
+small 7 inactive -1 2 6000 16000 0 0
+small 8 inactive -1 2 6000 16000 0 0
+small 9 inactive -1 2 6000 16000 0 0
+small 10 inactive -1 2 6000 16000 0 0
+small 11 inactive -1 2 6000 16000 0 0
+small 12 inactive -1 2 6000 16000 0 0
+small 13 inactive -1 2 6000 16000 0 0
+small 14 inactive -1 2 6000 16000 0 0
+small 15 inactive -1 2 6000 16000 0 0
+small 16 inactive -1 2 6000 16000 0 0
+small 17 inactive -1 2 6000 16000 0 0
+small 18 inactive -1 2 6000 16000 0 0
+small 19 inactive -1 2 6000 16000 0 0
+small 20 inactive -1 2 6000 16000 0 0
+small 21 inactive -1 2 6000 16000 0 0
+small 22 inactive -1 2 6000 16000 0 0
+small 23 inactive -1 2 6000 16000 0 0
+small 24 inactive -1 2 6000 16000 0 0
+small 25 inactive -1 2 6000 16000 0 0
+small 26 inactive -1 2 6000 16000 0 0
+small 27 inactive -1 2 6000 16000 0 0
+small 28 inactive -1 2 6000 16000 0 0
+small 29 inactive -1 2 6000 16000 0 0
+medium 0 inactive -1 4 20000 64000 0 0
+medium 1 inactive -1 4 20000 64000 0 0
+medium 2 inactive -1 4 20000 64000 0 0
+medium 3 inactive -1 4 20000 64000 0 0
+medium 4 inactive -1 4 20000 64000 0 0
+medium 5 inactive -1 4 20000 64000 0 0
+medium 6 inactive -1 4 20000 64000 0 0
+medium 7 inactive -1 4 20000 64000 0 0
+medium 8 inactive -1 4 20000 64000 0 0
+medium 9 inactive -1 4 20000 64000 0 0
+medium 10 inactive -1 4 20000 64000 0 0
+medium 11 inactive -1 4 20000 64000 0 0
+medium 12 inactive -1 4 20000 64000 0 0
+medium 13 inactive -1 4 20000 64000 0 0
+medium 14 inactive -1 4 20000 64000 0 0
+medium 15 inactive -1 4 20000 64000 0 0
+medium 16 inactive -1 4 20000 64000 0 0
+medium 17 inactive -1 4 20000 64000 0 0
+medium 18 inactive -1 4 20000 64000 0 0
+medium 19 inactive -1 4 20000 64000 0 0
+medium 20 inactive -1 4 20000 64000 0 0
+medium 21 inactive -1 4 20000 64000 0 0
+medium 22 inactive -1 4 20000 64000 0 0
+medium 23 inactive -1 4 20000 64000 0 0
+medium 24 inactive -1 4 20000 64000 0 0
+medium 25 inactive -1 4 20000 64000 0 0
+medium 26 inactive -1 4 20000 64000 0 0
+medium 27 inactive -1 4 20000 64000 0 0
+medium 28 inactive -1 4 20000 64000 0 0
+medium 29 inactive -1 4 20000 64000 0 0
+large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 7 tiny 3
+t:        144 job     7 (waiting) on # 3 of server tiny (booting) SCHEDULED
+SENT OK
+RCVD REDY
+t:        153 job     3 on # 0 of server xlarge RUNNING
+SENT JOBN 161 8 118 6 1100 6000
+RCVD GETS Avail 6 1100 6000
+SENT DATA 116 124
+RCVD OK
+SENT large 1 inactive -1 8 200000 256000 0 0
+large 2 inactive -1 8 200000 256000 0 0
+large 3 inactive -1 8 200000 256000 0 0
+large 4 inactive -1 8 200000 256000 0 0
+large 5 inactive -1 8 200000 256000 0 0
+large 6 inactive -1 8 200000 256000 0 0
+large 7 inactive -1 8 200000 256000 0 0
+large 8 inactive -1 8 200000 256000 0 0
+large 9 inactive -1 8 200000 256000 0 0
+large 10 inactive -1 8 200000 256000 0 0
+large 11 inactive -1 8 200000 256000 0 0
+large 12 inactive -1 8 200000 256000 0 0
+large 13 inactive -1 8 200000 256000 0 0
+large 14 inactive -1 8 200000 256000 0 0
+large 15 inactive -1 8 200000 256000 0 0
+large 16 inactive -1 8 200000 256000 0 0
+large 17 inactive -1 8 200000 256000 0 0
+large 18 inactive -1 8 200000 256000 0 0
+large 19 inactive -1 8 200000 256000 0 0
+large 20 inactive -1 8 200000 256000 0 0
+large 21 inactive -1 8 200000 256000 0 0
+large 22 inactive -1 8 200000 256000 0 0
+large 23 inactive -1 8 200000 256000 0 0
+large 24 inactive -1 8 200000 256000 0 0
+large 25 inactive -1 8 200000 256000 0 0
+large 26 inactive -1 8 200000 256000 0 0
+large 27 inactive -1 8 200000 256000 0 0
+large 28 inactive -1 8 200000 256000 0 0
+large 29 inactive -1 8 200000 256000 0 0
+xlarge 0 active 153 6 437800 500200 0 1
+xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 8 xlarge 0
+t:        161 job     8 (running) on # 0 of server xlarge (active) SCHEDULED
+t:        161 job     8 on # 0 of server xlarge RUNNING
+SENT OK
+RCVD REDY
+t:        173 job     5 on # 0 of server large COMPLETED
+SENT JCPL 173 5 large 0
+RCVD REDY
+t:        175 job     4 on # 1 of server tiny RUNNING
+SENT JOBN 175 9 3896 15 23100 29400
+RCVD GETS Avail 15 23100 29400
+SENT DATA 86 124
+RCVD OK
+SENT xlarge 1 inactive -1 16 448000 512000 0 0
+xlarge 2 inactive -1 16 448000 512000 0 0
+xlarge 3 inactive -1 16 448000 512000 0 0
+xlarge 4 inactive -1 16 448000 512000 0 0
+xlarge 5 inactive -1 16 448000 512000 0 0
+xlarge 6 inactive -1 16 448000 512000 0 0
+xlarge 7 inactive -1 16 448000 512000 0 0
+xlarge 8 inactive -1 16 448000 512000 0 0
+xlarge 9 inactive -1 16 448000 512000 0 0
+xlarge 10 inactive -1 16 448000 512000 0 0
+xlarge 11 inactive -1 16 448000 512000 0 0
+xlarge 12 inactive -1 16 448000 512000 0 0
+xlarge 13 inactive -1 16 448000 512000 0 0
+xlarge 14 inactive -1 16 448000 512000 0 0
+xlarge 15 inactive -1 16 448000 512000 0 0
+xlarge 16 inactive -1 16 448000 512000 0 0
+xlarge 17 inactive -1 16 448000 512000 0 0
+xlarge 18 inactive -1 16 448000 512000 0 0
+xlarge 19 inactive -1 16 448000 512000 0 0
+2xlarge 0 inactive -1 32 288000 1024000 0 0
+2xlarge 1 inactive -1 32 288000 1024000 0 0
+2xlarge 2 inactive -1 32 288000 1024000 0 0
+2xlarge 3 inactive -1 32 288000 1024000 0 0
+2xlarge 4 inactive -1 32 288000 1024000 0 0
+2xlarge 5 inactive -1 32 288000 1024000 0 0
+2xlarge 6 inactive -1 32 288000 1024000 0 0
+2xlarge 7 inactive -1 32 288000 1024000 0 0
+2xlarge 8 inactive -1 32 288000 1024000 0 0
+2xlarge 9 inactive -1 32 288000 1024000 0 0
+2xlarge 10 inactive -1 32 288000 1024000 0 0
+2xlarge 11 inactive -1 32 288000 1024000 0 0
+2xlarge 12 inactive -1 32 288000 1024000 0 0
+2xlarge 13 inactive -1 32 288000 1024000 0 0
+2xlarge 14 inactive -1 32 288000 1024000 0 0
+2xlarge 15 inactive -1 32 288000 1024000 0 0
+2xlarge 16 inactive -1 32 288000 1024000 0 0
+2xlarge 17 inactive -1 32 288000 1024000 0 0
+2xlarge 18 inactive -1 32 288000 1024000 0 0
+2xlarge 19 inactive -1 32 288000 1024000 0 0
+3xlarge 0 inactive -1 64 512000 2048000 0 0
+3xlarge 1 inactive -1 64 512000 2048000 0 0
+3xlarge 2 inactive -1 64 512000 2048000 0 0
+3xlarge 3 inactive -1 64 512000 2048000 0 0
+3xlarge 4 inactive -1 64 512000 2048000 0 0
+3xlarge 5 inactive -1 64 512000 2048000 0 0
+3xlarge 6 inactive -1 64 512000 2048000 0 0
+3xlarge 7 inactive -1 64 512000 2048000 0 0
+3xlarge 8 inactive -1 64 512000 2048000 0 0
+3xlarge 9 inactive -1 64 512000 2048000 0 0
+3xlarge 10 inactive -1 64 512000 2048000 0 0
+3xlarge 11 inactive -1 64 512000 2048000 0 0
+3xlarge 12 inactive -1 64 512000 2048000 0 0
+3xlarge 13 inactive -1 64 512000 2048000 0 0
+3xlarge 14 inactive -1 64 512000 2048000 0 0
+3xlarge 15 inactive -1 64 512000 2048000 0 0
+3xlarge 16 inactive -1 64 512000 2048000 0 0
+3xlarge 17 inactive -1 64 512000 2048000 0 0
+3xlarge 18 inactive -1 64 512000 2048000 0 0
+3xlarge 19 inactive -1 64 512000 2048000 0 0
+3xlarge 20 inactive -1 64 512000 2048000 0 0
+3xlarge 21 inactive -1 64 512000 2048000 0 0
+3xlarge 22 inactive -1 64 512000 2048000 0 0
+3xlarge 23 inactive -1 64 512000 2048000 0 0
+3xlarge 24 inactive -1 64 512000 2048000 0 0
+3xlarge 25 inactive -1 64 512000 2048000 0 0
+3xlarge 26 inactive -1 64 512000 2048000 0 0
+3xlarge 27 inactive -1 64 512000 2048000 0 0
+3xlarge 28 inactive -1 64 512000 2048000 0 0
+3xlarge 29 inactive -1 64 512000 2048000 0 0
+3xlarge 30 inactive -1 64 512000 2048000 0 0
+3xlarge 31 inactive -1 64 512000 2048000 0 0
+3xlarge 32 inactive -1 64 512000 2048000 0 0
+3xlarge 33 inactive -1 64 512000 2048000 0 0
+3xlarge 34 inactive -1 64 512000 2048000 0 0
+3xlarge 35 inactive -1 64 512000 2048000 0 0
+3xlarge 36 inactive -1 64 512000 2048000 0 0
+3xlarge 37 inactive -1 64 512000 2048000 0 0
+3xlarge 38 inactive -1 64 512000 2048000 0 0
+3xlarge 39 inactive -1 64 512000 2048000 0 0
+4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 9 xlarge 1
+t:        175 job     9 (waiting) on # 1 of server xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 10 58 80 337300 655700
+RCVD GETS Avail 80 337300 655700
+SENT DATA 7 124
+RCVD OK
+SENT 4xlarge 0 inactive -1 128 1792000 4096000 0 0
+4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 10 4xlarge 0
+t:        175 job    10 (waiting) on # 0 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 11 803 120 834700 431600
+RCVD GETS Avail 120 834700 431600
+SENT DATA 6 124
+RCVD OK
+SENT 4xlarge 1 inactive -1 128 1792000 4096000 0 0
+4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 11 4xlarge 1
+t:        175 job    11 (waiting) on # 1 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 12 878 76 359000 275700
+RCVD GETS Avail 76 359000 275700
+SENT DATA 5 124
+RCVD OK
+SENT 4xlarge 2 inactive -1 128 1792000 4096000 0 0
+4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 12 4xlarge 2
+t:        175 job    12 (waiting) on # 2 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 13 31 95 329400 1881700
+RCVD GETS Avail 95 329400 1881700
+SENT DATA 4 124
+RCVD OK
+SENT 4xlarge 3 inactive -1 128 1792000 4096000 0 0
+4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 13 4xlarge 3
+t:        175 job    13 (waiting) on # 3 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 14 60 91 213300 268000
+RCVD GETS Avail 91 213300 268000
+SENT DATA 3 124
+RCVD OK
+SENT 4xlarge 4 inactive -1 128 1792000 4096000 0 0
+4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 14 4xlarge 4
+t:        175 job    14 (waiting) on # 4 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 15 5 101 33100 600000
+RCVD GETS Avail 101 33100 600000
+SENT DATA 2 124
+RCVD OK
+SENT 4xlarge 5 inactive -1 128 1792000 4096000 0 0
+4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 15 4xlarge 5
+t:        175 job    15 (waiting) on # 5 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 16 982 109 546500 554400
+RCVD GETS Avail 109 546500 554400
+SENT DATA 1 124
+RCVD OK
+SENT 4xlarge 6 inactive -1 128 1792000 4096000 0 0
+RCVD OK
+SENT .
+RCVD SCHD 16 4xlarge 6
+t:        175 job    16 (waiting) on # 6 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 17 73 99 703600 753200
+RCVD GETS Avail 99 703600 753200
+SENT DATA 0 124
+RCVD OK
+SENT .
+RCVD GETS Capable 99 703600 753200
+SENT DATA 7 124
+RCVD OK
+SENT 4xlarge 0 booting 235 48 1454700 3440300 1 0
+4xlarge 1 booting 235 8 957300 3664400 1 0
+4xlarge 2 booting 235 52 1433000 3820300 1 0
+4xlarge 3 booting 235 33 1462600 2214300 1 0
+4xlarge 4 booting 235 37 1578700 3828000 1 0
+4xlarge 5 booting 235 27 1758900 3496000 1 0
+4xlarge 6 booting 235 19 1245500 3541600 1 0
+RCVD OK
+SENT .
+RCVD SCHD 17 4xlarge 0
+t:        175 job    17 (waiting) on # 0 of server 4xlarge (booting) SCHEDULED
+SENT OK
+RCVD REDY
+SENT JOBN 175 18 27 98 615800 886800
+RCVD REDY
+SENT JOBN 175 18 27 98 615800 886800
+RCVD REDY
+SENT JOBN 175 18 27 98 615800 886800
+RCVD REDY
+SENT JOBN 175 18 27 98 615800 886800
+RCVD REDY
+SENT JOBN 175 18 27 98 615800 886800
+RCVD REDY
+SENT JOBN 175 18 27 98 615800 886800
+RCVD REDY
+SENT JOBN 175 18 27 98 615800 886800
+RCVD GETS Avail 98 615800 886800
+SENT DATA 0 124
+RCVD OK
+SENT .
