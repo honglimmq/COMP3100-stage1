@@ -1,6 +1,8 @@
 package util;
 
 import java.net.Socket;
+import util.enums.Command;
+import util.enums.ServerCommand;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;

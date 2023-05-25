@@ -12,7 +12,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Element;
 
-class ServerXML {
+public class ServerXML {
     String serverType;
     int limit;
     int bootupTime;
@@ -31,10 +31,7 @@ class ServerXML {
         this.memory = memory;
         this.disk = disk;
     }
-}
 
-
-public class XMLParser {
     public static List<ServerXML> parse(String xmlFilePath) {
         List<ServerXML> servers = new ArrayList<>();
 

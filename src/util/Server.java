@@ -1,98 +1,50 @@
 package util;
 
 public class Server {
-    private String serverType;
-    private int serverID;
-    private String status;
-    private int currStartTime;
-    private int core;
-    private int memory;
-    private int disk;
-    private int waitingJobs;
-    private int runningJobs;
+    public String serverType;
+    public int serverID;
+    public String status;
+    public int currStartTime;
+    public int core;
+    public int memory;
+    public int disk;
+    public int waitingJobs;
+    public int runningJobs;
 
     public Server(String serverType, int serverID, String status, int currStartTime, int core,
             int memory, int disk, int waitingJobs, int runningJobs) {
-        setServerType(serverType);
-        setServerID(serverID);
-        setStatus(status);
-        setCurrStartTime(currStartTime);
-        setCore(core);
-        setMemory(memory);
-        setDisk(disk);
-        setWaitingJobs(waitingJobs);
-        setRunningJobs(runningJobs);
-    }
-
-    public String getServerType() {
-        return serverType;
-    }
-
-    public int getServerID() {
-        return serverID;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public int getCurrStartTime() {
-        return currStartTime;
-    }
-
-    public int getCore() {
-        return core;
-    }
-
-    public int getMemory() {
-        return memory;
-    }
-
-    public int getDisk() {
-        return disk;
-    }
-
-    public int getWaitingJobs() {
-        return waitingJobs;
-    }
-
-    public int getRunningJobs() {
-        return runningJobs;
-    }
-
-    public void setServerType(String serverType) {
         this.serverType = serverType;
-    }
-
-    public void setServerID(int serverID) {
         this.serverID = serverID;
-    }
-
-    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public void setCurrStartTime(int currStartTime) {
         this.currStartTime = currStartTime;
-    }
-
-    public void setCore(int core) {
         this.core = core;
-    }
-
-    public void setMemory(int memory) {
         this.memory = memory;
-    }
-
-    public void setDisk(int disk) {
         this.disk = disk;
-    }
-
-    public void setWaitingJobs(int waitingJobs) {
         this.waitingJobs = waitingJobs;
-    }
-
-    public void setRunningJobs(int runningJobs) {
         this.runningJobs = runningJobs;
     }
+
+  public static Server parseServerInfo(String[] serverInfo) {
+    Server server = null;
+    try {
+      String serverType = serverInfo[0];
+      int serverID = Integer.parseInt(serverInfo[1]);
+      String state = serverInfo[2];
+      int currStartTime = Integer.parseInt(serverInfo[3]);
+      int core = Integer.parseInt(serverInfo[4]);
+      int memory = Integer.parseInt(serverInfo[5]);
+      int disk = Integer.parseInt(serverInfo[6]);
+      int waitingJobs = Integer.parseInt(serverInfo[7]);
+      int runningJobs = Integer.parseInt(serverInfo[8]);
+
+      server = new Server(serverType, serverID, state, currStartTime, core, memory, disk,
+          waitingJobs, runningJobs);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
+    } catch (NumberFormatException e) {
+      System.out.println("NumberFormatException ==> " + e.getMessage());
+    }
+    return server;
+  }
+
 }

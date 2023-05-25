@@ -16,6 +16,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import util.*;
+import util.enums.*;
 
 public class Client {
   // Current job information
@@ -26,11 +27,11 @@ public class Client {
 
   private ClientServerConnection serverCommunication;
   private Algorithm currAlgorithm;
+  private ServerXML serverXML;
 
   public Client() {
     serverCommunication = new ClientServerConnection();
-    currAlgorithm = Algorithm.BF;
-
+    currAlgorithm = Algorithm.CF;
   }
 
   public Client(Algorithm algo) {
@@ -47,6 +48,7 @@ public class Client {
     serverCommunication.send(Command.AUTH, System.getProperty("user.name"));
     serverCommunication.recieve();
 
+    
     while (!(serverCommunication.getReceivedMessage().equals(ServerCommand.NONE.toString()))) {
       // Signal ds-server for a job
       serverCommunication.send(Command.REDY);
@@ -75,6 +77,8 @@ public class Client {
     Server chosenServer = null;
 
     switch (currAlgorithm) {
+      case FC:
+        chosenServer = firstCapableAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Capable);
       case BF:
       case CF:
         chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
@@ -86,10 +90,7 @@ public class Client {
 
     // SCHD
     if (chosenServer != null) {
-      String serverType = chosenServer.getServerType();
-      int serverID = chosenServer.getServerID();
-
-      serverCommunication.send(Command.SCHD, jobID + " " + serverType + " " + serverID);
+      serverCommunication.send(Command.SCHD, jobID + " " + chosenServer.serverType + " " + chosenServer.serverID);
       serverCommunication.recieve();
     }
   }
@@ -97,7 +98,12 @@ public class Client {
   // ####################
   // Scheduling Algorithms
   // ####################
-  private Server closestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
+  Server firstCapableAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode){
+    List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
+    return null;
+  }
+
+  Server closestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
     // Query and return available server with required resource based on GETS mode
     List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
@@ -111,10 +117,9 @@ public class Client {
     int smallestFitnessValueCore = Integer.MAX_VALUE;
     int smallestFitnessValueMemory = Integer.MAX_VALUE;
 
-
     for (int i = 0; i < servers.size(); i++) {
-      int fitnessValueCore = servers.get(i).getCore() - reqCore;
-      int fitnessValueMemory = servers.get(i).getMemory() - reqMem;
+      int fitnessValueCore = servers.get(i).core - reqCore;
+      int fitnessValueMemory = servers.get(i).memory - reqMem;
 
       if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
         smallestFitnessValueCore = fitnessValueCore;
@@ -157,29 +162,6 @@ public class Client {
     return jobID;
   }
 
-  private Server parseServerInfo(String[] serverInfo) {
-    Server server = null;
-    try {
-      String serverType = serverInfo[0];
-      int serverID = Integer.parseInt(serverInfo[1]);
-      String state = serverInfo[2];
-      int currStartTime = Integer.parseInt(serverInfo[3]);
-      int core = Integer.parseInt(serverInfo[4]);
-      int memory = Integer.parseInt(serverInfo[5]);
-      int disk = Integer.parseInt(serverInfo[6]);
-      int waitingJobs = Integer.parseInt(serverInfo[7]);
-      int runningJobs = Integer.parseInt(serverInfo[8]);
-
-      server = new Server(serverType, serverID, state, currStartTime, core, memory, disk,
-          waitingJobs, runningJobs);
-    } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
-    } catch (NumberFormatException e) {
-      System.out.println("NumberFormatException ==> " + e.getMessage());
-    }
-    return server;
-  }
-
   private List<Server> getServerInfo(GETSMode GetsMode, int reqCore, int reqMemory, int reqDisk) {
     // Generate outgoing message for GETS command with appropriate GETSMode
     String getModeStr = GetsMode.toString();
@@ -194,12 +176,11 @@ public class Client {
 
     if (numOfServer != 0) {
       serverCommunication.send(Command.OK);
-
       // Process servers information
       for (int i = 0; i < numOfServer; i++) {
         serverCommunication.recieve();
         spiltedMsg = serverCommunication.getReceivedMessage().split("\\s++");
-        servers.add(parseServerInfo(spiltedMsg));
+        servers.add(Server.parseServerInfo(spiltedMsg));
       }
     }
 
@@ -208,8 +189,6 @@ public class Client {
 
     return servers;
   }
-
-
 
   public static void main(String args[]) {
     // Check if any command-line arguments are passed
