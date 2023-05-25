@@ -25,10 +25,16 @@ public class Client {
   private int reqDisk = 0;
 
   private ClientServerConnection serverCommunication;
-  Algorithm currAlgorithm = Algorithm.BF;
+  private Algorithm currAlgorithm;
 
   public Client() {
     serverCommunication = new ClientServerConnection();
+    currAlgorithm = Algorithm.BF;
+
+  }
+
+  public Client(Algorithm algo) {
+    currAlgorithm = algo;
   }
 
   public void run() {
@@ -64,16 +70,18 @@ public class Client {
     System.exit(serverCommunication.close());
   }
 
-
   private void handleJob(String jobInfo[]) {
     parseJobInfo(jobInfo);
     Server chosenServer = null;
 
     switch (currAlgorithm) {
       case BF:
-        chosenServer = bestFitTwistAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
+      case CF:
+        chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
         break;
       default:
+        chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
+        break;
     }
 
     // SCHD
@@ -86,67 +94,54 @@ public class Client {
     }
   }
 
-  private Server bestFitTwistAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
+  // ####################
+  // Scheduling Algorithms
+  // ####################
+  private Server closestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
     // Query and return available server with required resource based on GETS mode
     List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
-    if (servers != null && !servers.isEmpty()) {
-      int chosenServerIndex = -1;
-      int backupServerIndex = -1;
-      int smallestFitnessValueCore = Integer.MAX_VALUE;
-      int smallestFitnessValueMemory = Integer.MAX_VALUE;
-
-      /* 
-      for (int i = 0; i < servers.size(); i++) {
-        int fitnessValueCore = servers.get(i).getCore() - reqCore;
-        int fitnessValueMemory = servers.get(i).getMemory() - reqMem;
-
-        if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
-          smallestFitnessValueCore = fitnessValueCore;
-          smallestFitnessValueMemory = fitnessValueMemory;
-          chosenServerIndex = i;
-        } else if (chosenServerIndex == -1 && fitnessValueCore < smallestFitnessValueCore) {
-          smallestFitnessValueCore = fitnessValueCore;
-          smallestFitnessValueMemory = fitnessValueMemory;
-          backupServerIndex = i;
-        } else if (fitnessValueCore == smallestFitnessValueCore
-            && fitnessValueMemory < smallestFitnessValueMemory) {
-          smallestFitnessValueMemory = fitnessValueMemory;
-          chosenServerIndex = i;
-        }
-      }*/
-
-      for (int i = 0; i < servers.size(); i++) {
-        int fitnessValueCore = servers.get(i).getCore() - reqCore;
-        int fitnessValueMemory = servers.get(i).getMemory() - reqMem;
-
-        if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
-          smallestFitnessValueCore = fitnessValueCore;
-          smallestFitnessValueMemory = fitnessValueMemory;
-          chosenServerIndex = i;
-        } else if (fitnessValueCore == smallestFitnessValueCore) {
-          if (fitnessValueMemory < smallestFitnessValueMemory && fitnessValueMemory >= 0) {
-            smallestFitnessValueMemory = fitnessValueMemory;
-            chosenServerIndex = i;
-          }
-        } else if (chosenServerIndex == -1 && fitnessValueCore < smallestFitnessValueCore) {
-          smallestFitnessValueCore = fitnessValueCore;
-          smallestFitnessValueMemory = fitnessValueMemory;
-          backupServerIndex = i;
-        }
-      }
-
-      if (chosenServerIndex == -1) {
-        chosenServerIndex = backupServerIndex;
-      }
-
-      return servers.get(chosenServerIndex);
+    // Base case: no server data from GETS Avail [...], do GETS Capable [...] instead.
+    if (servers == null || servers.isEmpty()) {
+      return closestFitAlgorithm(reqCore, reqMem, reqDisk, GETSMode.Capable);
     }
 
-    return bestFitTwistAlgorithm(reqCore, reqMem, reqDisk, GETSMode.Capable);
+    int chosenServerIndex = -1;
+    int backupServerIndex = -1;
+    int smallestFitnessValueCore = Integer.MAX_VALUE;
+    int smallestFitnessValueMemory = Integer.MAX_VALUE;
+
+
+    for (int i = 0; i < servers.size(); i++) {
+      int fitnessValueCore = servers.get(i).getCore() - reqCore;
+      int fitnessValueMemory = servers.get(i).getMemory() - reqMem;
+
+      if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
+        smallestFitnessValueCore = fitnessValueCore;
+        smallestFitnessValueMemory = fitnessValueMemory;
+        chosenServerIndex = i;
+      } else if (fitnessValueCore == smallestFitnessValueCore) {
+        if (fitnessValueMemory < smallestFitnessValueMemory && fitnessValueMemory >= 0) {
+          smallestFitnessValueMemory = fitnessValueMemory;
+          chosenServerIndex = i;
+        }
+      } else if (chosenServerIndex == -1 && fitnessValueCore < smallestFitnessValueCore) {
+        smallestFitnessValueCore = fitnessValueCore;
+        smallestFitnessValueMemory = fitnessValueMemory;
+        backupServerIndex = i;
+      }
+    }
+
+    if (chosenServerIndex == -1) {
+      chosenServerIndex = backupServerIndex;
+    }
+
+    return servers.get(chosenServerIndex);
   }
 
-
+  // ####################
+  // Ulility Methods
+  // ####################
 
   private int parseJobInfo(String[] jobInfo) {
     try {
@@ -159,8 +154,30 @@ public class Client {
     } catch (NumberFormatException e) {
       System.out.println("NumberFormatException ==> " + e.getMessage());
     }
-
     return jobID;
+  }
+
+  private Server parseServerInfo(String[] serverInfo) {
+    Server server = null;
+    try {
+      String serverType = serverInfo[0];
+      int serverID = Integer.parseInt(serverInfo[1]);
+      String state = serverInfo[2];
+      int currStartTime = Integer.parseInt(serverInfo[3]);
+      int core = Integer.parseInt(serverInfo[4]);
+      int memory = Integer.parseInt(serverInfo[5]);
+      int disk = Integer.parseInt(serverInfo[6]);
+      int waitingJobs = Integer.parseInt(serverInfo[7]);
+      int runningJobs = Integer.parseInt(serverInfo[8]);
+
+      server = new Server(serverType, serverID, state, currStartTime, core, memory, disk,
+          waitingJobs, runningJobs);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
+    } catch (NumberFormatException e) {
+      System.out.println("NumberFormatException ==> " + e.getMessage());
+    }
+    return server;
   }
 
   private List<Server> getServerInfo(GETSMode GetsMode, int reqCore, int reqMemory, int reqDisk) {
@@ -192,30 +209,38 @@ public class Client {
     return servers;
   }
 
-  private Server parseServerInfo(String[] serverInfo) {
-    Server server = null;
-    try {
-      String serverType = serverInfo[0];
-      int serverID = Integer.parseInt(serverInfo[1]);
-      String state = serverInfo[2];
-      int currStartTime = Integer.parseInt(serverInfo[3]);
-      int core = Integer.parseInt(serverInfo[4]);
-      int memory = Integer.parseInt(serverInfo[5]);
-      int disk = Integer.parseInt(serverInfo[6]);
-      int waitingJobs = Integer.parseInt(serverInfo[7]);
-      int runningJobs = Integer.parseInt(serverInfo[8]);
 
-      server = new Server(serverType, serverID, state, currStartTime, core, memory, disk,
-          waitingJobs, runningJobs);
-    } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
-    } catch (NumberFormatException e) {
-      System.out.println("NumberFormatException ==> " + e.getMessage());
-    }
-    return server;
-  }
 
   public static void main(String args[]) {
-    new Client().run();
+    // Check if any command-line arguments are passed
+    if (args.length == 0) {
+      new Client().run();
+    } else if (args.length == 2 && args[0].equals("-a")) {
+      String arg = args[1];
+      Algorithm algo = null;
+
+      // Pick an algorithm
+      switch (arg) {
+        case "bf":
+          algo = Algorithm.BF;
+          break;
+        case "ff":
+          algo = Algorithm.FF;
+          break;
+        case "wf":
+          algo = Algorithm.WF;
+          break;
+        case "atl":
+          algo = Algorithm.ATL;
+          break;
+        case "cf":
+          algo = Algorithm.CF;
+          break;
+        default:
+          algo = Algorithm.CF;
+          break;
+      }
+      new Client(algo).run();
+    }
   }
 }

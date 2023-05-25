@@ -1,6 +1,6 @@
 package util;
 
 public enum Algorithm {
-    ATL, LRR, FC, FF, BF, WF
+    ATL, LRR, FC, FF, BF, WF, CF
 }
 
