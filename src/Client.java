@@ -71,7 +71,7 @@ public class Client {
 
     switch (currAlgorithm) {
       case BF:
-        chosenServer = bestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
+        chosenServer = bestFitTwistAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
         break;
       default:
     }
@@ -86,39 +86,66 @@ public class Client {
     }
   }
 
-  private Server bestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
+  private Server bestFitTwistAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
     // Query and return available server with required resource based on GETS mode
     List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
     if (servers != null && !servers.isEmpty()) {
-      // Fitness value := num of available core of the server - num of required core by current job
       int chosenServerIndex = -1;
       int backupServerIndex = -1;
-      int smallestFitnessValue = Integer.MAX_VALUE;
+      int smallestFitnessValueCore = Integer.MAX_VALUE;
+      int smallestFitnessValueMemory = Integer.MAX_VALUE;
 
-      // Find a server with the smallest positive fitness value. If given 2 servers of the same
-      // fitness value, pick the first one. If however, there is no positive fitness value server,
-      // pick the closest negative fitness value server to 0.
+      /* 
       for (int i = 0; i < servers.size(); i++) {
-        int fitnessValue = servers.get(i).getCore() - reqCore;
-        if (fitnessValue < smallestFitnessValue && fitnessValue >= 0) {
-          smallestFitnessValue = fitnessValue;
+        int fitnessValueCore = servers.get(i).getCore() - reqCore;
+        int fitnessValueMemory = servers.get(i).getMemory() - reqMem;
+
+        if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
+          smallestFitnessValueCore = fitnessValueCore;
+          smallestFitnessValueMemory = fitnessValueMemory;
           chosenServerIndex = i;
-        } else if (chosenServerIndex == -1 && fitnessValue < smallestFitnessValue) {
-          smallestFitnessValue = fitnessValue;
+        } else if (chosenServerIndex == -1 && fitnessValueCore < smallestFitnessValueCore) {
+          smallestFitnessValueCore = fitnessValueCore;
+          smallestFitnessValueMemory = fitnessValueMemory;
+          backupServerIndex = i;
+        } else if (fitnessValueCore == smallestFitnessValueCore
+            && fitnessValueMemory < smallestFitnessValueMemory) {
+          smallestFitnessValueMemory = fitnessValueMemory;
+          chosenServerIndex = i;
+        }
+      }*/
+
+      for (int i = 0; i < servers.size(); i++) {
+        int fitnessValueCore = servers.get(i).getCore() - reqCore;
+        int fitnessValueMemory = servers.get(i).getMemory() - reqMem;
+
+        if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
+          smallestFitnessValueCore = fitnessValueCore;
+          smallestFitnessValueMemory = fitnessValueMemory;
+          chosenServerIndex = i;
+        } else if (fitnessValueCore == smallestFitnessValueCore) {
+          if (fitnessValueMemory < smallestFitnessValueMemory && fitnessValueMemory >= 0) {
+            smallestFitnessValueMemory = fitnessValueMemory;
+            chosenServerIndex = i;
+          }
+        } else if (chosenServerIndex == -1 && fitnessValueCore < smallestFitnessValueCore) {
+          smallestFitnessValueCore = fitnessValueCore;
+          smallestFitnessValueMemory = fitnessValueMemory;
           backupServerIndex = i;
         }
       }
 
-      if(chosenServerIndex == -1){
+      if (chosenServerIndex == -1) {
         chosenServerIndex = backupServerIndex;
       }
 
       return servers.get(chosenServerIndex);
     }
 
-    return bestFitAlgorithm(reqCore, reqMem, reqDisk, GETSMode.Capable);
+    return bestFitTwistAlgorithm(reqCore, reqMem, reqDisk, GETSMode.Capable);
   }
+
 
 
   private int parseJobInfo(String[] jobInfo) {
