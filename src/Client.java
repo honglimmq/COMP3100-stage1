@@ -27,7 +27,8 @@ public class Client {
 
   private ClientServerConnection serverCommunication;
   private Algorithm currAlgorithm;
-  private ServerXML serverXML;
+  private List<ServerXML> serverXML = null;
+
 
   public Client() {
     serverCommunication = new ClientServerConnection();
@@ -35,6 +36,7 @@ public class Client {
   }
 
   public Client(Algorithm algo) {
+    serverCommunication = new ClientServerConnection();
     currAlgorithm = algo;
   }
 
@@ -48,7 +50,11 @@ public class Client {
     serverCommunication.send(Command.AUTH, System.getProperty("user.name"));
     serverCommunication.recieve();
 
-    
+
+    // Read ds-system.xml
+    serverXML = ServerXML.parse("ds-system.xml");
+
+
     while (!(serverCommunication.getReceivedMessage().equals(ServerCommand.NONE.toString()))) {
       // Signal ds-server for a job
       serverCommunication.send(Command.REDY);
@@ -59,10 +65,11 @@ public class Client {
 
       switch (receivedCommand) {
         case JOBP:
+
         case JOBN:
           handleJob(splittedMsg);
           break;
-        case JCPL:
+        case JCPL:  // Compeleted job
         case NONE:
         default:
           break;
@@ -78,8 +85,11 @@ public class Client {
 
     switch (currAlgorithm) {
       case FC:
-        chosenServer = firstCapableAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Capable);
+        chosenServer = firstCapableAlgorithm(reqCore, reqMemory, reqDisk);
+        break;
+      case FF:
       case BF:
+      case WF:
       case CF:
         chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
         break;
@@ -90,7 +100,8 @@ public class Client {
 
     // SCHD
     if (chosenServer != null) {
-      serverCommunication.send(Command.SCHD, jobID + " " + chosenServer.serverType + " " + chosenServer.serverID);
+      serverCommunication.send(Command.SCHD,
+          jobID + " " + chosenServer.serverType + " " + chosenServer.serverID);
       serverCommunication.recieve();
     }
   }
@@ -98,18 +109,26 @@ public class Client {
   // ####################
   // Scheduling Algorithms
   // ####################
-  Server firstCapableAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode){
-    List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
-    return null;
+
+  Server firstCapableAlgorithm(int reqCore, int reqMem, int reqDisk) {
+    List<Server> servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
+
+    // Return first server from GETS Capable
+    return servers.get(0);
   }
 
   Server closestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
     // Query and return available server with required resource based on GETS mode
     List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
-    // Base case: no server data from GETS Avail [...], do GETS Capable [...] instead.
+    // If no server data is retrieved from GETS Avail, try getting data from GETS Capable instead.
     if (servers == null || servers.isEmpty()) {
-      return closestFitAlgorithm(reqCore, reqMem, reqDisk, GETSMode.Capable);
+      servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
+      if (servers == null || servers.isEmpty()) {
+        // No available servers
+
+        return null;
+      }
     }
 
     int chosenServerIndex = -1;
@@ -121,6 +140,10 @@ public class Client {
       int fitnessValueCore = servers.get(i).core - reqCore;
       int fitnessValueMemory = servers.get(i).memory - reqMem;
 
+      // Select a server with the smallest positive core fitness value. If given 2 servers of the
+      // same
+      // fitness value, pick the first one. If however, there is no positive fitness value server,
+      // pick the closest negative fitness value server to 0.
       if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
         smallestFitnessValueCore = fitnessValueCore;
         smallestFitnessValueMemory = fitnessValueMemory;
@@ -200,6 +223,9 @@ public class Client {
 
       // Pick an algorithm
       switch (arg) {
+        case "fc":
+          algo = Algorithm.FC;
+          break;
         case "bf":
           algo = Algorithm.BF;
           break;
