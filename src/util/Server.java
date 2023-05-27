@@ -1,28 +1,28 @@
 package util;
 
 public class Server {
-    public String serverType;
-    public int serverID;
-    public String status;
-    public int currStartTime;
-    public int core;
-    public int memory;
-    public int disk;
-    public int waitingJobs;
-    public int runningJobs;
+  String serverType;
+  int serverID;
+  String status;
+  int currStartTime;
+  int core;
+  int memory;
+  int disk;
+  int waitingJobs;
+  int runningJobs;
 
-    public Server(String serverType, int serverID, String status, int currStartTime, int core,
-            int memory, int disk, int waitingJobs, int runningJobs) {
-        this.serverType = serverType;
-        this.serverID = serverID;
-        this.status = status;
-        this.currStartTime = currStartTime;
-        this.core = core;
-        this.memory = memory;
-        this.disk = disk;
-        this.waitingJobs = waitingJobs;
-        this.runningJobs = runningJobs;
-    }
+  public Server(String serverType, int serverID, String status, int currStartTime, int core,
+      int memory, int disk, int waitingJobs, int runningJobs) {
+    this.serverType = serverType;
+    this.serverID = serverID;
+    this.status = status;
+    this.currStartTime = currStartTime;
+    this.core = core;
+    this.memory = memory;
+    this.disk = disk;
+    this.waitingJobs = waitingJobs;
+    this.runningJobs = runningJobs;
+  }
 
   public static Server parseServerInfo(String[] serverInfo) {
     Server server = null;
@@ -46,5 +46,4 @@ public class Server {
     }
     return server;
   }
-
 }
