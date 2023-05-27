@@ -31,17 +31,20 @@ public class Client {
 
   private ClientServerConnection serverCommunication;
   private Algorithm currAlgorithm;
+  private Job currJob;
   private List<ServerXML> serverXML = null;
 
 
   public Client() {
     serverCommunication = new ClientServerConnection();
     currAlgorithm = Algorithm.CF;
+    currJob = null;
   }
 
   public Client(Algorithm algo) {
     serverCommunication = new ClientServerConnection();
     currAlgorithm = algo;
+    currJob = null;
   }
 
   public void run() {
@@ -87,8 +90,8 @@ public class Client {
   }
 
   private void handleJob(String jobInfo[]) {
-    parseJobInfo(jobInfo);
     Server chosenServer = null;
+    currJob = Job.parseJobInfo(jobInfo);
 
     switch (currAlgorithm) {
       case FC:
@@ -241,55 +244,10 @@ public class Client {
   // ## Ulility Methods ##
   // #####################
 
-  // LSTJ job info reponse format
-  // jobID jobState submitTime startTime estRunTime core memory disk
-  private Job parseJobInfoFromLSTJ(String[] jobInfo) {
-    int jobID = 0;
-    int jobState = 0;
-    int submitTime = 0;
-    int startTime = 0;
-    int estRunTime = 0;
-    int core = 0;
-    int memory = 0;
-    int disk = 0;
-
-    try {
-      jobID = Integer.parseInt(jobInfo[0]);
-      jobState = Integer.parseInt(jobInfo[1]);
-      submitTime = Integer.parseInt(jobInfo[2]);
-      startTime = Integer.parseInt(jobInfo[3]);
-      estRunTime = Integer.parseInt(jobInfo[4]);
-      core = Integer.parseInt(jobInfo[5]);
-      memory = Integer.parseInt(jobInfo[6]);
-      disk = Integer.parseInt(jobInfo[7]);
-
-    } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
-    } catch (NumberFormatException e) {
-      System.out.println("NumberFormatException ==> " + e.getMessage());
-    }
-    return new Job(jobID, jobState, submitTime, startTime, estRunTime, core, memory, disk);
-  }
-
-  private int parseJobInfo(String[] jobInfo) {
-    try {
-      jobID = Integer.parseInt(jobInfo[2]);
-      reqCore = Integer.parseInt(jobInfo[4]);
-      reqMemory = Integer.parseInt(jobInfo[5]);
-      reqDisk = Integer.parseInt(jobInfo[6]);
-    } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
-    } catch (NumberFormatException e) {
-      System.out.println("NumberFormatException ==> " + e.getMessage());
-    }
-    return jobID;
-  }
-
   private List<Server> getServerInfo(GETSMode GetsMode, int reqCore, int reqMemory, int reqDisk) {
     // Generate outgoing message for GETS command with appropriate GETSMode
-    String getModeStr = GetsMode.toString();
     serverCommunication.send(Command.GETS,
-        getModeStr + " " + reqCore + " " + reqMemory + " " + reqDisk);
+        GetsMode.toString() + " " + reqCore + " " + reqMemory + " " + reqDisk);
 
     // Should recieve DATA [nRecs] [recLen]
     serverCommunication.recieve();
