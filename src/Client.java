@@ -25,6 +25,9 @@ public class Client {
   private int reqMemory = 0;
   private int reqDisk = 0;
 
+  //
+  private int currentDSServerTime = -1;
+
   private ClientServerConnection serverCommunication;
   private Algorithm currAlgorithm;
   private List<ServerXML> serverXML = null;
@@ -67,9 +70,12 @@ public class Client {
         case JOBP:
 
         case JOBN:
+          currentDSServerTime = Integer.parseInt(splittedMsg[1]);
           handleJob(splittedMsg);
           break;
-        case JCPL:  // Compeleted job
+        case JCPL:
+          // job completion details, i.e. JCPL endTime jobID serverType serverID
+          currentDSServerTime = Integer.parseInt(splittedMsg[1]);
         case NONE:
         default:
           break;
@@ -93,6 +99,9 @@ public class Client {
       case CF:
         chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
         break;
+      case LWT:
+        chosenServer = lowestWaitingTimeAlgorithm(reqCore, reqMemory, reqDisk);
+        break;
       default:
         chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
         break;
@@ -109,6 +118,65 @@ public class Client {
   // ####################
   // Scheduling Algorithms
   // ####################
+
+  Server lowestWaitingTimeAlgorithm(int reqCore, int reqMem, int reqDisk) {
+    List<Server> servers = getServerInfo(GETSMode.Avail, reqCore, reqMem, reqDisk);
+    if (servers == null || servers.isEmpty()) {
+      servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
+    }
+
+    int chosenServerIndex = -1;
+    int minEstimatedWaitingTime = Integer.MAX_VALUE;
+    for (int i = 0; i < servers.size(); i++) {
+      // query the total estimated waiting time i.e. EJWT serverType serverID
+      Server server = servers.get(i);
+      serverCommunication.send(Command.EJWT, server.serverType + " " + server.serverID);
+      int estWaitingTime = Integer.parseInt(serverCommunication.recieve());
+
+      if (minEstimatedWaitingTime > estWaitingTime) {
+        minEstimatedWaitingTime = estWaitingTime;
+        chosenServerIndex = i;
+      }
+    }
+
+    if (chosenServerIndex == -1) {
+
+    }
+
+    return servers.get(chosenServerIndex);
+  }
+
+
+  Server lowestWaitingTimeAlgorithm2(int reqCore, int reqMem, int reqDisk) {
+    List<Server> servers = getServerInfo(GETSMode.Avail, reqCore, reqMem, reqDisk);
+    if (servers == null || servers.isEmpty()) {
+      servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
+    }
+
+    int chosenServerIndex = -1;
+    int minEstimatedWaitingTime = Integer.MAX_VALUE;
+    for (int i = 0; i < servers.size(); i++) {
+      // query the total estimated waiting time i.e. EJWT serverType serverID
+      Server server = servers.get(i);
+      serverCommunication.send(Command.EJWT, server.serverType + " " + server.serverID);
+      int estWaitingTime = Integer.parseInt(serverCommunication.recieve());
+      int fitnessValueCore = servers.get(i).core - reqCore;
+
+      if(fitnessValueCore > )
+
+
+      if (minEstimatedWaitingTime > estWaitingTime) {
+        minEstimatedWaitingTime = estWaitingTime;
+        chosenServerIndex = i;
+      } else if(minEstimatedWaitingTime > estWaitingTime &&true){
+        
+      }
+    }
+
+    // best fit
+
+    return servers.get(chosenServerIndex);
+  }
 
   Server firstCapableAlgorithm(int reqCore, int reqMem, int reqDisk) {
     List<Server> servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
@@ -240,6 +308,9 @@ public class Client {
           break;
         case "cf":
           algo = Algorithm.CF;
+          break;
+        case "lwt":
+          algo = Algorithm.LWT;
           break;
         default:
           algo = Algorithm.CF;
