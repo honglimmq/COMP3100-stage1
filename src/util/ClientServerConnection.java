@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class ClientServerConnection {
-    private boolean debug = true;
+    private boolean debug = false;
     private final String EMPTY_STRING = "";
     private final String LINE_BREAK = "\n";
     private final String WHITESPACE = " ";

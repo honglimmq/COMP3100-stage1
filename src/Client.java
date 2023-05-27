@@ -16,6 +16,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import util.*;
+import util.Job;
 import util.enums.*;
 
 public class Client {
@@ -115,9 +116,9 @@ public class Client {
     }
   }
 
-  // ####################
-  // Scheduling Algorithms
-  // ####################
+  // ###########################
+  // ## Scheduling Algorithms ##
+  // ###########################
 
   Server lowestWaitingTimeAlgorithm(int reqCore, int reqMem, int reqDisk) {
     List<Server> servers = getServerInfo(GETSMode.Avail, reqCore, reqMem, reqDisk);
@@ -160,16 +161,17 @@ public class Client {
       Server server = servers.get(i);
       serverCommunication.send(Command.EJWT, server.serverType + " " + server.serverID);
       int estWaitingTime = Integer.parseInt(serverCommunication.recieve());
+
+      //
       int fitnessValueCore = servers.get(i).core - reqCore;
 
-      if(fitnessValueCore > )
 
 
       if (minEstimatedWaitingTime > estWaitingTime) {
         minEstimatedWaitingTime = estWaitingTime;
         chosenServerIndex = i;
-      } else if(minEstimatedWaitingTime > estWaitingTime &&true){
-        
+      } else if (minEstimatedWaitingTime > estWaitingTime && true) {
+
       }
     }
 
@@ -235,9 +237,39 @@ public class Client {
     return servers.get(chosenServerIndex);
   }
 
-  // ####################
-  // Ulility Methods
-  // ####################
+  // #####################
+  // ## Ulility Methods ##
+  // #####################
+
+  // LSTJ job info reponse format
+  // jobID jobState submitTime startTime estRunTime core memory disk
+  private Job parseJobInfoFromLSTJ(String[] jobInfo) {
+    int jobID = 0;
+    int jobState = 0;
+    int submitTime = 0;
+    int startTime = 0;
+    int estRunTime = 0;
+    int core = 0;
+    int memory = 0;
+    int disk = 0;
+
+    try {
+      jobID = Integer.parseInt(jobInfo[0]);
+      jobState = Integer.parseInt(jobInfo[1]);
+      submitTime = Integer.parseInt(jobInfo[2]);
+      startTime = Integer.parseInt(jobInfo[3]);
+      estRunTime = Integer.parseInt(jobInfo[4]);
+      core = Integer.parseInt(jobInfo[5]);
+      memory = Integer.parseInt(jobInfo[6]);
+      disk = Integer.parseInt(jobInfo[7]);
+
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("ArrayIndexOutOfBoundsException ==> " + e.getMessage());
+    } catch (NumberFormatException e) {
+      System.out.println("NumberFormatException ==> " + e.getMessage());
+    }
+    return new Job(jobID, jobState, submitTime, startTime, estRunTime, core, memory, disk);
+  }
 
   private int parseJobInfo(String[] jobInfo) {
     try {
@@ -280,6 +312,7 @@ public class Client {
 
     return servers;
   }
+
 
   public static void main(String args[]) {
     // Check if any command-line arguments are passed
