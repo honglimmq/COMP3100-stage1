@@ -1,14 +1,14 @@
 package util;
 
 public class Job {
-    int jobID;
-    int jobState;
-    int submitTime;
-    int startTime;
-    int estRunTime;
-    int core;
-    int memory;
-    int disk;
+    public int jobID;
+    public int jobState;
+    public int submitTime;
+    public int startTime;
+    public int estRunTime;
+    public int reqCore;
+    public int reqMemory;
+    public int reqDisk;
 
     public Job() {
         this.jobID = -1;
@@ -16,9 +16,9 @@ public class Job {
         this.submitTime = -1;
         this.startTime = -1;
         this.estRunTime = -1;
-        this.core = -1;
-        this.memory = -1;
-        this.disk = -1;
+        this.reqCore = -1;
+        this.reqMemory = -1;
+        this.reqDisk = -1;
     }
 
     public Job(int jobID, int submitTime, int estRunTime, int core, int memory, int disk) {
@@ -27,9 +27,9 @@ public class Job {
         this.submitTime = submitTime;
         this.startTime = -1;
         this.estRunTime = estRunTime;
-        this.core = core;
-        this.memory = memory;
-        this.disk = disk;
+        this.reqCore = core;
+        this.reqMemory = memory;
+        this.reqDisk = disk;
     }
 
     public Job(int jobID, int jobState, int submitTime, int startTime, int estRunTime, int core,
@@ -39,9 +39,9 @@ public class Job {
         this.submitTime = submitTime;
         this.startTime = startTime;
         this.estRunTime = estRunTime;
-        this.core = core;
-        this.memory = memory;
-        this.disk = disk;
+        this.reqCore = core;
+        this.reqMemory = memory;
+        this.reqDisk = disk;
     }
 
 
