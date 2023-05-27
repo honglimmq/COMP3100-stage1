@@ -21,11 +21,6 @@ import util.Job;
 import util.enums.*;
 
 public class Client {
-  // Current job information
-  private int jobID = 0;
-  private int reqCore = 0;
-  private int reqMemory = 0;
-  private int reqDisk = 0;
 
   //
   private int currentDSServerTime = -1;
@@ -96,26 +91,26 @@ public class Client {
 
     switch (currAlgorithm) {
       case FC:
-        chosenServer = firstCapableAlgorithm(reqCore, reqMemory, reqDisk);
+        chosenServer = firstCapableAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk);
         break;
       case FF:
       case BF:
       case WF:
       case CF:
-        chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
+        chosenServer = closestFitAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk, GETSMode.Avail);
         break;
       case LWT:
-        chosenServer = lowestWaitingTimeAlgorithm(reqCore, reqMemory, reqDisk);
+        chosenServer = lowestWaitingTimeAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk);
         break;
       default:
-        chosenServer = closestFitAlgorithm(reqCore, reqMemory, reqDisk, GETSMode.Avail);
+        chosenServer = closestFitAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk, GETSMode.Avail);
         break;
     }
 
     // SCHD
     if (chosenServer != null) {
       serverCommunication.send(Command.SCHD,
-          jobID + " " + chosenServer.serverType + " " + chosenServer.serverID);
+          currJob.jobID + " " + chosenServer.serverType + " " + chosenServer.serverID);
       serverCommunication.recieve();
     }
   }
