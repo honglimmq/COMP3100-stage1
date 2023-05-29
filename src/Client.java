@@ -22,7 +22,7 @@ import util.enums.*;
 
 public class Client {
 
-  //
+  // 
   private int currentDSServerTime = -1;
 
   private ClientServerConnection serverCommunication;
@@ -97,13 +97,15 @@ public class Client {
       case BF:
       case WF:
       case CF:
-        chosenServer = closestFitAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk, GETSMode.Avail);
+        chosenServer = closestFitAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk);
         break;
-      case LWT:
-        chosenServer = lowestWaitingTimeAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk);
+      case FT:
+        chosenServer =
+            fastestTurnaroundAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk);
         break;
       default:
-        chosenServer = closestFitAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk, GETSMode.Avail);
+        chosenServer =
+            fastestTurnaroundAlgorithm(currJob.reqCore, currJob.reqMemory, currJob.reqDisk);
         break;
     }
 
@@ -115,11 +117,11 @@ public class Client {
     }
   }
 
-  // ###########################
-  // ## Scheduling Algorithms ##
-  // ###########################
+  // ##################################
+  // ## Custom Scheduling Algorithms ##
+  // ##################################
 
-  Server lowestWaitingTimeAlgorithm(int reqCore, int reqMem, int reqDisk) {
+  Server fastestTurnaroundAlgorithm(int reqCore, int reqMem, int reqDisk) {
     List<Server> servers = getServerInfo(GETSMode.Avail, reqCore, reqMem, reqDisk);
     if (servers == null || servers.isEmpty()) {
       servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
@@ -139,56 +141,12 @@ public class Client {
       }
     }
 
-    if (chosenServerIndex == -1) {
-
-    }
-
     return servers.get(chosenServerIndex);
   }
 
-
-  Server lowestWaitingTimeAlgorithm2(int reqCore, int reqMem, int reqDisk) {
+  Server closestFitAlgorithm(int reqCore, int reqMem, int reqDisk) {
+    // Query and return available server with required resource based on GETS Avail
     List<Server> servers = getServerInfo(GETSMode.Avail, reqCore, reqMem, reqDisk);
-    if (servers == null || servers.isEmpty()) {
-      servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
-    }
-
-    int chosenServerIndex = -1;
-    int minEstimatedWaitingTime = Integer.MAX_VALUE;
-    for (int i = 0; i < servers.size(); i++) {
-      // query the total estimated waiting time i.e. EJWT serverType serverID
-      Server server = servers.get(i);
-      serverCommunication.send(Command.EJWT, server.serverType + " " + server.serverID);
-      int estWaitingTime = Integer.parseInt(serverCommunication.recieve());
-
-      //
-      int fitnessValueCore = servers.get(i).core - reqCore;
-
-
-
-      if (minEstimatedWaitingTime > estWaitingTime) {
-        minEstimatedWaitingTime = estWaitingTime;
-        chosenServerIndex = i;
-      } else if (minEstimatedWaitingTime > estWaitingTime && true) {
-
-      }
-    }
-
-    // best fit
-
-    return servers.get(chosenServerIndex);
-  }
-
-  Server firstCapableAlgorithm(int reqCore, int reqMem, int reqDisk) {
-    List<Server> servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
-
-    // Return first server from GETS Capable
-    return servers.get(0);
-  }
-
-  Server closestFitAlgorithm(int reqCore, int reqMem, int reqDisk, GETSMode mode) {
-    // Query and return available server with required resource based on GETS mode
-    List<Server> servers = getServerInfo(mode, reqCore, reqMem, reqDisk);
 
     // If no server data is retrieved from GETS Avail, try getting data from GETS Capable instead.
     if (servers == null || servers.isEmpty()) {
@@ -209,10 +167,10 @@ public class Client {
       int fitnessValueCore = servers.get(i).core - reqCore;
       int fitnessValueMemory = servers.get(i).memory - reqMem;
 
-      // Select a server with the smallest positive core fitness value. If given 2 servers of the
-      // same
-      // fitness value, pick the first one. If however, there is no positive fitness value server,
-      // pick the closest negative fitness value server to 0.
+      // Selection process:
+      // 1.Select a server with the smallest positive core fitness value. 
+      // 2.If given 2 servers of the samefitness value, use memory fitness value as a tiebreaker. 
+      // 3.If however, there is no positive fitness value server, pick the closest negative fitness value server to 0.
       if (fitnessValueCore < smallestFitnessValueCore && fitnessValueCore >= 0) {
         smallestFitnessValueCore = fitnessValueCore;
         smallestFitnessValueMemory = fitnessValueMemory;
@@ -234,6 +192,17 @@ public class Client {
     }
 
     return servers.get(chosenServerIndex);
+  }
+
+  // ####################################
+  // ## Baseline Scheduling Algorithms ##
+  // ####################################
+
+  Server firstCapableAlgorithm(int reqCore, int reqMem, int reqDisk) {
+    List<Server> servers = getServerInfo(GETSMode.Capable, reqCore, reqMem, reqDisk);
+
+    // Return first server from GETS Capable
+    return servers.get(0);
   }
 
   // #####################
@@ -267,7 +236,6 @@ public class Client {
     return servers;
   }
 
-
   public static void main(String args[]) {
     // Check if any command-line arguments are passed
     if (args.length == 0) {
@@ -296,8 +264,8 @@ public class Client {
         case "cf":
           algo = Algorithm.CF;
           break;
-        case "lwt":
-          algo = Algorithm.LWT;
+        case "ft":
+          algo = Algorithm.FT;
           break;
         default:
           algo = Algorithm.CF;
