@@ -4,12 +4,10 @@
  * <p>
  * The 'Client' class is responsible for scheduling job requests to be sent to the distributed
  * server simulator. It simulates the behaviour of a client by generating request data and sending
- * it to the server using 'serverCommunication.send' method. The current scheduler algorithm to pick
- * which server to dispatch job to is called Largest-Round-Robin(LRR), it sends each job to a server
- * of the largest type in a round-robin fashion.
+ * it to the server using 'serverCommunication.send' method. 
  * 
  * <p>
- * Created by Hong Lim (Student ID: 44679440) on April 03, 2023.
+ * Created by Hong Lim (Student ID: 44679440) on 05 May, 2023.
  * </p>
  */
 
@@ -21,8 +19,6 @@ import util.Job;
 import util.enums.*;
 
 public class Client {
-
-  // 
   private int currentDSServerTime = -1;
 
   private ClientServerConnection serverCommunication;
